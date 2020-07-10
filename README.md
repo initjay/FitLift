@@ -12,7 +12,6 @@
 **FitLift** is an all around fitness journal app. The easy to use and customizable interface provides fitness goers an easy way to log their workouts. Features include the ability to automatically calculate the total amount of weight lifted, connection to 3rd party fitness wearables (Fitbit, Google fit, etc.), ability to add friends and compete, and a nutrition tracker section.
 
 ### App Evaluation
-[Evaluation of your app across the following attributes]
 - **Category:** Health & Fitness
 - **Mobile:** This app will initally be mobile focused and incorporate features such as camera use, location tracking, and push notifications
 - **Story:** The value of this story is very clear. It is mainly focused on creating an easy way to track your fitness progress, while also including features to gamify this process with the hope of creating more motivation
@@ -37,7 +36,7 @@
 * (SDK integration (Google fit?))
 * (Visually appealing)
 
-**Optional Nice-to-have Stories**
+**Optional (Stretch) Nice-to-have Stories**
 
 * User can add friends and see their fitness stats
 * User can search for other users
