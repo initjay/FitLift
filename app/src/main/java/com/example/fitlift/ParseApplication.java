@@ -1,8 +1,13 @@
 package com.example.fitlift;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -31,5 +36,17 @@ public class ParseApplication extends Application {
                 .clientKey(String.valueOf(R.string.MASTER_KEY))  // set explicitly unless clientKey is explicitly configured on Parse server
                 .clientBuilder(builder)
                 .server("https://fitLift.herokuapp.com/parse/").build());
+
+        // Testing parse
+        ParseUser user = new ParseUser();
+        user.setUsername("username");
+        user.setPassword("password");
+        user.setEmail("email@email.com");
+        user.signUpInBackground(new SignUpCallback() {
+            @Override
+            public void done(ParseException e) {
+                Log.i("ParseApplication", "Backend working");
+            }
+        });
     }
 }
