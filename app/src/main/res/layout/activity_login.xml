@@ -17,7 +17,7 @@
         android:layout_marginBottom="16dp"
         android:background="#FFFFFF"
         android:orientation="vertical"
-        tools:context=".LoginActivity">
+        tools:context=".activities.LoginActivity">
 
         <EditText
             android:id="@+id/etUsername"
