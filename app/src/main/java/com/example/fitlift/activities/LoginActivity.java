@@ -1,4 +1,4 @@
-package com.example.fitlift;
+package com.example.fitlift.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.fitlift.activities.CreateUserActivity;
+import com.example.fitlift.MainActivity;
+import com.example.fitlift.R;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -77,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goMainActivity() {
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, com.example.fitlift.MainActivity.class);
         startActivity(i);
         finish();
     }
