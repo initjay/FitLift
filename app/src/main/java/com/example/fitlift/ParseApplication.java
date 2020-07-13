@@ -37,16 +37,5 @@ public class ParseApplication extends Application {
                 .clientBuilder(builder)
                 .server("https://fitLift.herokuapp.com/parse/").build());
 
-        // Testing parse
-        ParseUser user = new ParseUser();
-        user.setUsername("username");
-        user.setPassword("password");
-        user.setEmail("email@email.com");
-        user.signUpInBackground(new SignUpCallback() {
-            @Override
-            public void done(ParseException e) {
-                Log.i("ParseApplication", "Backend working");
-            }
-        });
     }
 }
