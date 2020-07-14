@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.fitlift.MainActivity;
 import com.example.fitlift.R;
+import com.example.fitlift.databinding.ActivityLoginBinding;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -27,29 +29,34 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        // activity_login.xml -> ActivityLoginBinding
+        final ActivityLoginBinding binding = ActivityLoginBinding.inflate(getLayoutInflater()); // final needed for getText().toString()
+        // instead of setContentView(R.layout.activity_login);
 
         // skip login page if user is already logged in
         if (ParseUser.getCurrentUser() != null) {
             goMainActivity();
         }
 
-        etUsername = findViewById(R.id.etUsername);
-        etPassword = findViewById(R.id.etPassword);
-        btnLogin = findViewById(R.id.btnSignUp);
-        btnCreateUser = findViewById(R.id.btnCreateUser);
+        View view = binding.getRoot();
+        setContentView(view);
+        // instead of
+//        etUsername = findViewById(R.id.etUsername);
+//        etPassword = findViewById(R.id.etPassword);
+//        btnLogin = findViewById(R.id.btnSignUp);
+//        btnCreateUser = findViewById(R.id.btnCreateUser);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "onClick login button");
-                String username = etUsername.getText().toString();
-                String password = etPassword.getText().toString();
+                String username = binding.etUsername.getText().toString();
+                String password = binding.etPassword.getText().toString();
                 loginUser(username, password);
             }
         });
 
-        btnCreateUser.setOnClickListener(new View.OnClickListener() {
+        binding.btnCreateUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "onClick create user button");

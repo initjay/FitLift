@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fitlift.MainActivity;
 import com.example.fitlift.R;
+import com.example.fitlift.databinding.ActivityCreateUserBinding;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -27,20 +28,19 @@ public class CreateUserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_user);
+        // final needed for getText().toString()
+        final ActivityCreateUserBinding binding = ActivityCreateUserBinding.inflate(getLayoutInflater());
 
-        etUsername = findViewById(R.id.etUsername);
-        etPassword = findViewById(R.id.etPassword);
-        etEmail = findViewById(R.id.etEmail);
-        btnSignUp = findViewById(R.id.btnSignUp);
+        View view = binding.getRoot();
+        setContentView(view);
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
+        binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "onClick sign up");
-                String username = etUsername.getText().toString();
-                String password = etPassword.getText().toString();
-                String email = etEmail.getText().toString();
+                String username = binding.etUsername.getText().toString();
+                String password = binding.etPassword.getText().toString();
+                String email = binding.etEmail.getText().toString();
 
                 signUpUser(username, password, email);
             }
