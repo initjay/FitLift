@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 //        ParseUser user = ParseUser.getCurrentUser();
 //        user.logOut();
 
-        //setContentView(R.layout.activity_main);
+        // Set default selection for fragment
+        binding.bottomNavigation.setSelectedItemId(R.id.action_workout);
     }
 }
