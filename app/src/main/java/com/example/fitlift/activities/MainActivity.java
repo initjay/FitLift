@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // func to test login
+//         func to test login
 //        ParseUser user = ParseUser.getCurrentUser();
 //        user.logOut();
 
