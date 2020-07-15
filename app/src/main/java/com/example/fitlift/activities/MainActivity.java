@@ -1,4 +1,4 @@
-package com.example.fitlift;
+package com.example.fitlift.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.fitlift.R;
 import com.example.fitlift.databinding.ActivityMainBinding;
 import com.example.fitlift.fragments.FriendFragment;
 import com.example.fitlift.fragments.MealFragment;
