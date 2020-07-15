@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".activities.CreateUserActivity"/><!-- 'usesCleartextTraffic allows http traffic to be sent, TODO MAKE MORE SECURE -->
         <!-- make sure within the application tag, otherwise app will crash with XmlResourceParser errors -->
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".activities.MainActivity"/>
         <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
