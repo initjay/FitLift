@@ -1,4 +1,26 @@
 package com.example.fitlift;
 
-public class WorkoutJournal {
+import com.parse.ParseClassName;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+
+@ParseClassName("woJournal")
+public class WorkoutJournal extends ParseObject {
+
+    public static final String TAG = "Workout Journal Class";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_USER = "user";
+
+    public String getTitle () {
+        return getString(KEY_TITLE);
+    }
+
+    public void setTitle (String title) {
+        put(KEY_TITLE, title);
+    }
+
+    public ParseUser getUser() {
+        return getParseUser(KEY_USER);
+    }
+
 }
