@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.fitlift.R;
 import com.example.fitlift.Workout;
 import com.example.fitlift.WorkoutJournal;
@@ -30,11 +35,6 @@ import java.util.List;
 import static com.example.fitlift.Workout.KEY_JOURNAL;
 import static com.example.fitlift.Workout.KEY_TITLE;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link WorkoutFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class WorkoutFragment extends Fragment {
 
     public static final String TAG = "WorkoutFragment";
@@ -42,12 +42,17 @@ public class WorkoutFragment extends Fragment {
     private WorkoutJournalAdapter adapter;
     private List<WorkoutJournal> workouts;
     private String currUser = ParseUser.getCurrentUser().getObjectId();
+    private ParseUser user;
+    private ImageView ivProfileImg;
+    private TextView tvUserName;
 
     public WorkoutFragment() { }         // Required empty public constructor
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        user = ParseUser.getCurrentUser();
     }
 
     @Override
@@ -56,11 +61,21 @@ public class WorkoutFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_workout, container, false);
     }
-
+    // TODO add viewbinding library implementation
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         rvWorkouts = view.findViewById(R.id.rvWorkouts);
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        ivProfileImg = view.findViewById(R.id.ivProfileImg);
+        tvUserName = view.findViewById(R.id.tvUserName);
+
+        tvUserName.setText(user.getUsername());
+        // check that user has profile img
+        if (user.getParseFile("profileImg") != null) {
+            Glide.with(this).load(user.getParseFile("profileImg").getUrl()).circleCrop().into(ivProfileImg);
+        }
 
         workouts = new ArrayList<>();
         adapter = new WorkoutJournalAdapter(getContext(), workouts);
