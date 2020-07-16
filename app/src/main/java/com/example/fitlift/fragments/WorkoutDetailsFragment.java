@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.fitlift.R;
 
@@ -24,6 +25,10 @@ public class WorkoutDetailsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // testing bundle functionality
+        Bundle bundle = getArguments();
+        int position = bundle.getInt("Adapter position");
+        //Toast.makeText(getContext(), "Position " + position + " selected.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
