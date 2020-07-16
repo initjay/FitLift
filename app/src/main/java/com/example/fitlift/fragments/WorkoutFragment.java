@@ -71,6 +71,7 @@ public class WorkoutFragment extends Fragment {
         queryWorkouts();
     }
 
+    // Todo: store query responses locally as well for quicker access, wipe local storage when user signs out?
     private void queryWorkouts() {
 
         ParseQuery<WorkoutJournal> query = ParseQuery.getQuery(WorkoutJournal.class);
