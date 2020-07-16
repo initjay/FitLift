@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.fitlift.R;
 import com.example.fitlift.databinding.FragmentWorkoutDetailsBinding;
 
+// TODO fix back button to go back to workoutFragment
 
 public class WorkoutDetailsFragment extends Fragment {
 
