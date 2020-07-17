@@ -13,6 +13,7 @@ import com.example.fitlift.R;
 import com.example.fitlift.databinding.ActivityMainBinding;
 import com.example.fitlift.fragments.FriendFragment;
 import com.example.fitlift.fragments.MealFragment;
+import com.example.fitlift.fragments.WorkoutDetailsFragment;
 import com.example.fitlift.fragments.WorkoutFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.ParseUser;
@@ -53,11 +54,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//         func to test login
+        // func to test login
 //        ParseUser user = ParseUser.getCurrentUser();
 //        user.logOut();
 
         // Set default selection for fragment
         binding.bottomNavigation.setSelectedItemId(R.id.action_workout);
+    }
+
+    public void goToDetails() {
+        Fragment fragment = new WorkoutDetailsFragment();
+        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
     }
 }

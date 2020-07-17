@@ -31,17 +31,21 @@ public class WorkoutDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Bundle bundle = getArguments();
-        int position = bundle.getInt("Adapter position");
-        String title = bundle.getString("Title");
-        String date = bundle.getString("Date");
 
         // Inflate the layout for this fragment utilizing viewbinding
         FragmentWorkoutDetailsBinding binding = FragmentWorkoutDetailsBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        binding.tvTitle.setText(title);
-        binding.tvDate.setText(date);
+        Bundle bundle = getArguments();
+
+        if (bundle != null) {
+            int position = bundle.getInt("Adapter position");
+            String title = bundle.getString("Title");
+            String date = bundle.getString("Date");
+
+            binding.tvTitle.setText(title);
+            binding.tvDate.setText(date);
+        }
 
         return view;
     }
@@ -51,4 +55,5 @@ public class WorkoutDetailsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
     }
+
 }

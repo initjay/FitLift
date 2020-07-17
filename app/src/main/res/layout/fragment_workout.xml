@@ -14,7 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="#A3A2A2"
-        app:contentInsetStart="0dp">
+        app:contentInsetStart="0dp"
+        app:menu="@menu/menu_toolbar">
+
+        <!-- TODO: ADJUST SIZE OF ADDITION ACTION -->
 
         <RelativeLayout
             android:layout_width="match_parent"

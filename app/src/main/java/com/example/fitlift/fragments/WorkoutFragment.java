@@ -6,11 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,6 +24,7 @@ import com.bumptech.glide.Glide;
 import com.example.fitlift.R;
 import com.example.fitlift.Workout;
 import com.example.fitlift.WorkoutJournal;
+import com.example.fitlift.activities.MainActivity;
 import com.example.fitlift.adapters.WorkoutAdapter;
 import com.example.fitlift.adapters.WorkoutJournalAdapter;
 import com.parse.FindCallback;
@@ -45,6 +49,8 @@ public class WorkoutFragment extends Fragment {
     private ParseUser user;
     private ImageView ivProfileImg;
     private TextView tvUserName;
+    private MainActivity activity;
+    //private FragmentManager fragmentManager = getFragmentManager();
 
     public WorkoutFragment() { }         // Required empty public constructor
 
@@ -53,6 +59,8 @@ public class WorkoutFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         user = ParseUser.getCurrentUser();
+
+        activity = (MainActivity) getActivity();
     }
 
     @Override
@@ -70,6 +78,23 @@ public class WorkoutFragment extends Fragment {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ivProfileImg = view.findViewById(R.id.ivProfileImg);
         tvUserName = view.findViewById(R.id.tvUserName);
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            Fragment fragment;
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_add_workout:
+                    default:
+                        activity.goToDetails();
+                }
+                Log.i(TAG, "Fragment = " + fragment);
+                // handles inserting the fragment to the container in main activity
+                //transaction.replace(R.id.flContainer, fragment).commit();
+                return false;
+            }
+        });
 
         tvUserName.setText(user.getUsername());
         // check that user has profile img
