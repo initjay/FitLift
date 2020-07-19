@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.fitlift.R;
+import com.example.fitlift.WeightReps;
 import com.example.fitlift.Workout;
 import com.example.fitlift.WorkoutJournal;
 import com.example.fitlift.activities.MainActivity;
@@ -42,7 +43,7 @@ public class WorkoutFragment extends Fragment {
     public static final String TAG = "WorkoutFragment";
     private RecyclerView rvWorkouts;
     private WorkoutJournalAdapter adapter;
-    private List<WorkoutJournal> workouts;
+    private List<WorkoutJournal> workoutJournals;
     private String currUser = ParseUser.getCurrentUser().getObjectId();
     private ParseUser user;
     private ImageView ivProfileImg;
@@ -100,8 +101,8 @@ public class WorkoutFragment extends Fragment {
             Glide.with(this).load(user.getParseFile("profileImg").getUrl()).circleCrop().into(ivProfileImg);
         }
 
-        workouts = new ArrayList<>();
-        adapter = new WorkoutJournalAdapter(getContext(), workouts);
+        workoutJournals = new ArrayList<>();
+        adapter = new WorkoutJournalAdapter(getContext(), workoutJournals);
 
         rvWorkouts.setAdapter(adapter);
 
@@ -112,25 +113,38 @@ public class WorkoutFragment extends Fragment {
     // Todo: store query responses locally as well for quicker access, wipe local storage when user signs out?
     private void queryWorkouts() {
 
-        ParseQuery<WorkoutJournal> query = ParseQuery.getQuery(WorkoutJournal.class);
+        ParseQuery<WeightReps> query = ParseQuery.getQuery(WeightReps.class);
         // Only pull workout journals belonging to the current signed in user
-        query.whereContains("user", currUser);
+        query.include("workout.journal");
+        //query.whereContains("user", currUser);
         query.setLimit(20);
         query.addDescendingOrder(WorkoutJournal.KEY_CREATED_AT);
         // include woJournal class through pointer
         // query.include(KEY_JOURNAL);
-        query.findInBackground(new FindCallback<WorkoutJournal>() {
+        query.findInBackground(new FindCallback<WeightReps>() {
             @Override
-            public void done(List<WorkoutJournal> workoutJournals, ParseException e) {
+            public void done(List<WeightReps> weightReps, ParseException e) {
+                List<WorkoutJournal> tempWoJournals;
+                tempWoJournals = new ArrayList<>();
+
                 if (e != null) {
                     Log.e(TAG, "Issue with getting posts ", e);
                     return;
                 }
                 // iterate through workouts fetched
-                for (WorkoutJournal workoutJournal : workoutJournals) {
+                for (WeightReps weightRep : weightReps) {
+                    Workout workout = (Workout) weightRep.getWorkout();
+                    WorkoutJournal workoutJournal = null;
+                    try {
+                        workoutJournal = (WorkoutJournal) workout.getWorkoutJournal().fetchIfNeeded();
+                    } catch (ParseException ex) {
+                        ex.printStackTrace();
+                    }
+                    tempWoJournals.add(workoutJournal);
+
                     Log.i(TAG, "Title: " + workoutJournal.getTitle() + ", Date: " + workoutJournal.getCreatedAt().toString());
                 }
-                workouts.addAll(workoutJournals);
+                workoutJournals.addAll(tempWoJournals);
                 adapter.notifyDataSetChanged();
             }
         });
