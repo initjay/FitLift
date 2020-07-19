@@ -36,8 +36,6 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.fitlift.Workout.KEY_JOURNAL;
-import static com.example.fitlift.Workout.KEY_TITLE;
 
 public class WorkoutFragment extends Fragment {
 

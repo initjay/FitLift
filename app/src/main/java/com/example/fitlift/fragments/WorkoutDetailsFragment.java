@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.fitlift.R;
+import com.example.fitlift.WeightReps;
 import com.example.fitlift.Workout;
 import com.example.fitlift.WorkoutJournal;
 import com.example.fitlift.databinding.FragmentWorkoutDetailsBinding;
@@ -111,7 +112,7 @@ public class WorkoutDetailsFragment extends Fragment {
         //workout.addRep(reps);
         workout.setExercise(exercise);
 
-        ParseObject weightReps = new ParseObject("WeightReps");
+        WeightReps weightReps = new WeightReps();
         weightReps.put("weight", weight);
         weightReps.add("reps", reps);
 
