@@ -4,7 +4,7 @@ import com.parse.ParseClassName;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
-@ParseClassName("woJournal")
+@ParseClassName("WorkoutJournal")
 public class WorkoutJournal extends ParseObject {
 
     public static final String TAG = "Workout Journal Class";
@@ -23,4 +23,7 @@ public class WorkoutJournal extends ParseObject {
         return getParseUser(KEY_USER);
     }
 
+    public void setUser(ParseUser currentUser) {
+        put(KEY_USER, currentUser);
+    }
 }

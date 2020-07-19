@@ -117,6 +117,8 @@ public class WorkoutFragment extends Fragment {
         ParseQuery<WorkoutJournal> query = ParseQuery.getQuery(WorkoutJournal.class);
         // Only pull workout journals belonging to the current signed in user
         query.whereContains("user", currUser);
+        query.setLimit(20);
+        query.addDescendingOrder(WorkoutJournal.KEY_CREATED_AT);
         // include woJournal class through pointer
         // query.include(KEY_JOURNAL);
         query.findInBackground(new FindCallback<WorkoutJournal>() {

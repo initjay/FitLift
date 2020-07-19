@@ -16,10 +16,10 @@
         <RelativeLayout
             android:id="@+id/rvCards"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="258dp">
 
-            <TextView
-                android:id="@+id/tvTitle"
+            <EditText
+                android:id="@+id/etTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -27,16 +27,16 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="4dp"
-                android:text="TextView"
+                android:background="@android:color/transparent"
+                android:hint="Workout"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textStyle="bold"
-                tools:text="Title" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvTitle"
+                android:layout_below="@+id/etTitle"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="TextView"
@@ -62,9 +62,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
                 android:ems="5"
-                android:hint="exercise"
-                android:inputType="textPersonName"
-                android:text="Exercise" />
+                android:hint="Exercise"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/etWeight"
@@ -76,12 +75,11 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="4dp"
                 android:ems="5"
-                android:hint="weight"
-                android:inputType="textPersonName"
-                android:text="weight" />
+                android:hint="Weight"
+                android:inputType="number" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName3"
+                android:id="@+id/etReps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/etExercise"
@@ -90,12 +88,22 @@
                 android:layout_marginBottom="4dp"
                 android:layout_toEndOf="@+id/etWeight"
                 android:ems="5"
-                android:hint="reps"
-                android:inputType="textPersonName"
-                android:text="reps" />
+                android:hint="Reps"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/etReps"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Save" />
 
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
+
 
 </FrameLayout>

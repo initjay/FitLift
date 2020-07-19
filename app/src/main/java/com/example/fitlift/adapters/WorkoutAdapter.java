@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fitlift.R;
 import com.example.fitlift.Workout;
 import com.example.fitlift.databinding.ItemWorkoutBinding;
+import com.parse.ParseException;
 
 import java.util.List;
 
@@ -35,7 +36,11 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Workout workout = workouts.get(position);
-        holder.bind(workout);
+        try {
+            holder.bind(workout);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -52,9 +57,9 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.ViewHold
             binding = b;
         }
 
-        public void bind(Workout workout) {
+        public void bind(Workout workout) throws ParseException {
             // Bind the workout data to the view elements
-            binding.tvTitle.setText(workout.getTitle());
+            binding.etTitle.setText(workout.getTitle());
             binding.tvDate.setText(workout.getCreatedAt().toString());
         }
     }

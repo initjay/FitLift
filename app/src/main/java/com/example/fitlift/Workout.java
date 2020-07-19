@@ -7,7 +7,7 @@ import com.parse.ParseObject;
 
 import java.util.List;
 
-@ParseClassName("workout")
+@ParseClassName("Workout")
 public class Workout extends ParseObject {
 
     public static final String TAG = "Workout class";
@@ -16,14 +16,14 @@ public class Workout extends ParseObject {
     // in this case weight, reps, and woJournal
     public static final String KEY_WEIGHT = "weight";
     public static final String KEY_REPS = "reps";
-    public static final String KEY_JOURNAL = "woJournal";
+    public static final String KEY_JOURNAL = "journal";
     public static final String KEY_TITLE = "title";
+    public static final String KEY_EXERCISE = "exercise";
     // get workout journal that workout object points to
     public ParseObject woJrnlObject = this.fetchIfNeeded().getParseObject(KEY_JOURNAL);
 
-    private String title = woJrnlObject.fetchIfNeeded().getString(KEY_TITLE);
-
     public Workout() throws ParseException {
+
     }
 
     public int getWeight () {
@@ -43,7 +43,8 @@ public class Workout extends ParseObject {
         this.add(KEY_REPS, rep);
     }
 
-    public String getTitle () {
+    public String getTitle () throws ParseException {
+        String title = woJrnlObject.fetchIfNeeded().getString(KEY_TITLE);
         return title;
     }
 
@@ -54,6 +55,14 @@ public class Workout extends ParseObject {
 
     public ParseObject getWoJournal () {
         return woJrnlObject;
+    }
+
+    public void setWoJournal (ParseObject woJournal) {
+        put(KEY_JOURNAL, woJournal);
+    }
+
+    public void setExercise (String exercise) {
+        put(KEY_EXERCISE, exercise);
     }
 
 }
