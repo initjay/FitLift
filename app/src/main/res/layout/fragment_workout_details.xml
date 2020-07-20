@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,7 +17,7 @@
         <RelativeLayout
             android:id="@+id/rvCards"
             android:layout_width="match_parent"
-            android:layout_height="258dp">
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/etTitle"
@@ -53,49 +54,192 @@
                 android:layout_marginEnd="0dp"
                 android:background="?android:attr/listDivider" />
 
-            <EditText
-                android:id="@+id/etExercise"
+            <HorizontalScrollView
+                android:id="@id/horizontal_scroll_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/divider"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
-                android:ems="5"
-                android:hint="Exercise"
-                android:inputType="textPersonName" />
+                android:layout_below="@id/divider">
 
-            <EditText
-                android:id="@+id/etWeight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/etExercise"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="4dp"
-                android:ems="5"
-                android:hint="Weight"
-                android:inputType="number" />
+                <RelativeLayout
+                    android:id="@+id/rl_exercise_entry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/divider">
 
-            <EditText
-                android:id="@+id/etReps"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/etExercise"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="4dp"
-                android:layout_toEndOf="@+id/etWeight"
-                android:ems="5"
-                android:hint="Reps"
-                android:inputType="number" />
+                    <EditText
+                        android:id="@+id/etExercise"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="12dp"
+                        android:ems="5"
+                        android:hint="Exercise"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/etWeight1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etExercise"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:ems="5"
+                        android:hint="Weight"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/etReps1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etExercise"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_toEndOf="@+id/etWeight1"
+                        android:ems="5"
+                        android:hint="Reps"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/etReps2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etExercise"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@+id/etReps1"
+                        android:ems="5"
+                        android:hint="Reps"
+                        android:inputType="number"
+                        android:visibility="gone"/>
+
+                    <EditText
+                        android:id="@+id/etReps3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etExercise"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@+id/etReps2"
+                        android:ems="5"
+                        android:hint="Reps"
+                        android:inputType="number"
+                        android:visibility="gone"/>
+
+                    <EditText
+                        android:id="@+id/etReps4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etExercise"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@+id/etReps3"
+                        android:ems="5"
+                        android:hint="Reps"
+                        android:inputType="number"
+                        android:visibility="gone"/>
+
+                    <EditText
+                        android:id="@+id/etReps5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etExercise"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@+id/etReps4"
+                        android:ems="5"
+                        android:hint="Reps"
+                        android:inputType="number"
+                        android:visibility="gone"/>
+
+                    <EditText
+                        android:id="@+id/etReps6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etExercise"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@+id/etReps5"
+                        android:ems="5"
+                        android:hint="Reps"
+                        android:inputType="number"
+                        android:visibility="gone"/>
+
+                        <EditText
+                        android:id="@+id/etReps7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etExercise"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@+id/etReps6"
+                        android:ems="5"
+                        android:hint="Reps"
+                        android:inputType="number"
+                        android:visibility="gone"/>
+
+                    <EditText
+                        android:id="@+id/etReps8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etExercise"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@+id/etReps7"
+                        android:ems="5"
+                        android:hint="Reps"
+                        android:inputType="number"
+                        android:visibility="gone"/>
+
+                    <EditText
+                        android:id="@+id/etReps9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etExercise"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@+id/etReps8"
+                        android:ems="5"
+                        android:hint="Reps"
+                        android:inputType="number"
+                        android:visibility="gone"/>
+
+                    <EditText
+                        android:id="@+id/etReps10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etExercise"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@+id/etReps9"
+                        android:ems="5"
+                        android:hint="Reps"
+                        android:inputType="number"
+                        android:visibility="gone"/>
+
+
+                </RelativeLayout>
+
+            </HorizontalScrollView>
+
 
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/etReps"
+                android:layout_below="@+id/horizontal_scroll_view"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
@@ -106,4 +250,4 @@
     </androidx.cardview.widget.CardView>
 
 
-</FrameLayout>
+</RelativeLayout>
