@@ -28,6 +28,7 @@ import com.example.fitlift.Workout;
 import com.example.fitlift.WorkoutJournal;
 import com.example.fitlift.activities.LoginActivity;
 import com.example.fitlift.activities.MainActivity;
+import com.example.fitlift.adapters.WeightRepsAdapter;
 import com.example.fitlift.adapters.WorkoutAdapter;
 import com.example.fitlift.adapters.WorkoutJournalAdapter;
 import com.parse.FindCallback;
@@ -44,8 +45,8 @@ public class WorkoutFragment extends Fragment {
 
     public static final String TAG = "WorkoutFragment";
     private RecyclerView rvWorkouts;
-    private WorkoutJournalAdapter adapter;
-    private List<WorkoutJournal> workoutJournals;
+    private WeightRepsAdapter adapter;
+    private List<WeightReps> workoutJournals;
     private String currUser = ParseUser.getCurrentUser().getObjectId();
     private ParseUser user;
     private ImageView ivProfileImg;
@@ -108,7 +109,7 @@ public class WorkoutFragment extends Fragment {
         }
 
         workoutJournals = new ArrayList<>();
-        adapter = new WorkoutJournalAdapter(getContext(), workoutJournals);
+        adapter = new WeightRepsAdapter(getContext(), workoutJournals);
 
         rvWorkouts.setAdapter(adapter);
 
@@ -131,7 +132,7 @@ public class WorkoutFragment extends Fragment {
         query.findInBackground(new FindCallback<WeightReps>() {
             @Override
             public void done(List<WeightReps> weightReps, ParseException e) {
-                List<WorkoutJournal> tempWoJournals;
+                List<WeightReps> tempWoJournals;
                 tempWoJournals = new ArrayList<>();
 
                 if (e != null) {
@@ -147,7 +148,7 @@ public class WorkoutFragment extends Fragment {
                     } catch (ParseException ex) {
                         ex.printStackTrace();
                     }
-                    tempWoJournals.add(workoutJournal);
+                    tempWoJournals.add(weightRep);
 
                     Log.i(TAG, "Title: " + workoutJournal.getTitle() + ", Date: " + workoutJournal.getCreatedAt().toString());
                 }

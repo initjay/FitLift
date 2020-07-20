@@ -71,9 +71,11 @@ public class WorkoutDetailsFragment extends Fragment {
             int position = bundle.getInt("Adapter position");
             String title = bundle.getString("Title");
             String date = bundle.getString("Date");
+            String exercise = bundle.getString("Exercise");
 
             binding.etTitle.setText(title);
             binding.tvDate.setText(date);
+            binding.etExercise.setText(exercise);
 
         } else {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
