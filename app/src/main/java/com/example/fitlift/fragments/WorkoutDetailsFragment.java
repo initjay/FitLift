@@ -36,6 +36,7 @@ public class WorkoutDetailsFragment extends Fragment {
     public static final String TAG = "WorkoutDetailsFragment";
 
     private FragmentWorkoutDetailsBinding binding;
+    private ParseUser currUser = ParseUser.getCurrentUser();
 
     public WorkoutDetailsFragment() {
         // Required empty public constructor
@@ -118,6 +119,7 @@ public class WorkoutDetailsFragment extends Fragment {
 
         workout.put("journal", workoutJournal);
         weightReps.put("workout", workout);
+        weightReps.put("user", currUser);
 
 
         weightReps.saveInBackground(new SaveCallback() {

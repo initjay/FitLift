@@ -1,5 +1,6 @@
 package com.example.fitlift.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ import com.example.fitlift.R;
 import com.example.fitlift.WeightReps;
 import com.example.fitlift.Workout;
 import com.example.fitlift.WorkoutJournal;
+import com.example.fitlift.activities.LoginActivity;
 import com.example.fitlift.activities.MainActivity;
 import com.example.fitlift.adapters.WorkoutAdapter;
 import com.example.fitlift.adapters.WorkoutJournalAdapter;
@@ -68,6 +70,7 @@ public class WorkoutFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_workout, container, false);
     }
+
     // TODO add viewbinding library implementation
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -79,16 +82,19 @@ public class WorkoutFragment extends Fragment {
         tvUserName = view.findViewById(R.id.tvUserName);
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            Fragment fragment;
 
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_add_workout:
-                    default:
                         activity.goToDetails();
+                        break;
+                    case R.id.action_logout:
+                    default:
+                        ParseUser.logOut();
+                        Intent i = new Intent(getActivity(), LoginActivity.class);
+                        startActivity(i);
                 }
-                Log.i(TAG, "Fragment = " + fragment);
                 // handles inserting the fragment to the container in main activity
                 //transaction.replace(R.id.flContainer, fragment).commit();
                 return false;
@@ -116,11 +122,12 @@ public class WorkoutFragment extends Fragment {
         ParseQuery<WeightReps> query = ParseQuery.getQuery(WeightReps.class);
         // Only pull workout journals belonging to the current signed in user
         query.include("workout.journal");
-        //query.whereContains("user", currUser);
+        //ParseQuery<ParseUser> userParseQuery = ParseUser.getQuery();
+        //userParseQuery.whereMatchesKeyInQuery("objectId", "user", query);
+        query.whereContains("user", currUser);
         query.setLimit(20);
         query.addDescendingOrder(WorkoutJournal.KEY_CREATED_AT);
         // include woJournal class through pointer
-        // query.include(KEY_JOURNAL);
         query.findInBackground(new FindCallback<WeightReps>() {
             @Override
             public void done(List<WeightReps> weightReps, ParseException e) {
