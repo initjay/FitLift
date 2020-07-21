@@ -103,20 +103,65 @@ public class WorkoutDetailsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "Save button clicked");
-                // grab edit text data
-                String exercise = binding.etExercise1.getText().toString();
-                Integer weight = Integer.valueOf(binding.etWeight1.getText().toString());
-                //Integer.valueOf(binding.etReps1.getText().toString());
-                String title = binding.etTitle.getText().toString();
-                // Add all reps;
-                List<Integer> reps = addAllReps();
 
-                try {
-                    savePost(exercise, weight, reps, title);
-                } catch (ParseException e) {
-                    Log.e(TAG, "Error in savePost:");
-                    e.printStackTrace();
+                WorkoutJournal workoutJournal = null;
+
+                if(!binding.etExercise1.getText().toString().isEmpty()) {
+                    String title = binding.etTitle.getText().toString();
+                    String exercise1 = binding.etExercise1.getText().toString();
+                    Integer weight1 = Integer.valueOf(binding.etWeight1.getText().toString());
+                    List<Integer> reps = addAllReps1();
+
+                    try {
+                        workoutJournal = savePost(exercise1, weight1, reps, title);
+                    } catch (ParseException e) {
+                        Log.e(TAG, "Error in savePost:");
+                        e.printStackTrace();
+                    }
                 }
+
+                if(!binding.etExercise2.getText().toString().isEmpty()) {
+                    String exercise2 = binding.etExercise2.getText().toString();
+                    Integer weight2 = Integer.valueOf(binding.etWeight2.getText().toString());
+                    List<Integer> reps = addAllReps2();
+
+                    try {
+                        savePost(exercise2, weight2, reps, workoutJournal);
+                    } catch (ParseException e) {
+                        Log.e(TAG, "Error in savePost:");
+                        e.printStackTrace();
+                    }
+                }
+
+                if(!binding.etExercise3.getText().toString().isEmpty()) {
+                    String exercise3 = binding.etExercise3.getText().toString();
+                    Integer weight3 = Integer.valueOf(binding.etWeight3.getText().toString());
+                    List<Integer> reps = addAllReps3();
+
+                    try {
+                        savePost(exercise3, weight3, reps, workoutJournal);
+                    } catch (ParseException e) {
+                        Log.e(TAG, "Error in savePost:");
+                        e.printStackTrace();
+                    }
+                }
+
+                if(!binding.etExercise4.getText().toString().isEmpty()) {
+                    String exercise4 = binding.etExercise4.getText().toString();
+                    Integer weight4 = Integer.valueOf(binding.etWeight4.getText().toString());
+                    List<Integer> reps = addAllReps4();
+
+                    try {
+                        savePost(exercise4, weight4, reps, workoutJournal);
+                    } catch (ParseException e) {
+                        Log.e(TAG, "Error in savePost:");
+                        e.printStackTrace();
+                    }
+                }
+
+                FragmentManager fragmentManager = getFragmentManager();
+                Fragment fragment = new WorkoutFragment();
+                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
             }
         });
 
@@ -815,174 +860,191 @@ public class WorkoutDetailsFragment extends Fragment {
 
     }
 
-    private List<Integer> addAllReps() {
-        
+    private List<Integer> addAllReps1() {
         List<Integer> reps = new ArrayList<>();
-        
-        if (binding.etReps1.getText().toString() != null ) {
+
+        if (!binding.etReps1.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps1.getText().toString()));
         }
 
-        if (binding.etReps2.getText().toString() != null ) {
+        if (!binding.etReps2.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps2.getText().toString()));
         }
 
-        if (binding.etReps3.getText().toString() != null ) {
+        if (!binding.etReps3.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps3.getText().toString()));
         }
 
-        if (binding.etReps4.getText().toString() != null ) {
+        if (!binding.etReps4.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps4.getText().toString()));
         }
 
-        if (binding.etReps5.getText().toString() != null ) {
+        if (!binding.etReps5.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps5.getText().toString()));
         }
 
-        if (binding.etReps6.getText().toString() != null ) {
+        if (!binding.etReps6.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps6.getText().toString()));
         }
 
-        if (binding.etReps7.getText().toString() != null ) {
+        if (!binding.etReps7.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps7.getText().toString()));
         }
 
-        if (binding.etReps8.getText().toString() != null ) {
+        if (!binding.etReps8.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps8.getText().toString()));
         }
 
-        if (binding.etReps9.getText().toString() != null ) {
+        if (!binding.etReps9.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps9.getText().toString()));
         }
 
-        if (binding.etReps10.getText().toString() != null ) {
+        if (!binding.etReps10.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps10.getText().toString()));
         }
+        return reps;
+    }
 
-        if (binding.etReps11.getText().toString() != null ) {
+    private List<Integer> addAllReps2() {
+        List<Integer> reps = new ArrayList<>();
+
+        if (!binding.etReps11.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps11.getText().toString()));
         }
 
-        if (binding.etReps12.getText().toString() != null ) {
+        if (!binding.etReps12.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps12.getText().toString()));
         }
 
-        if (binding.etReps13.getText().toString() != null ) {
+        if (!binding.etReps13.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps13.getText().toString()));
         }
 
-        if (binding.etReps14.getText().toString() != null ) {
+        if (!binding.etReps14.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps14.getText().toString()));
         }
 
-        if (binding.etReps15.getText().toString() != null ) {
+        if (!binding.etReps15.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps15.getText().toString()));
         }
 
-        if (binding.etReps16.getText().toString() != null ) {
+        if (!binding.etReps16.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps16.getText().toString()));
         }
 
-        if (binding.etReps17.getText().toString() != null ) {
+        if (!binding.etReps17.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps17.getText().toString()));
         }
 
-        if (binding.etReps18.getText().toString() != null ) {
+        if (!binding.etReps18.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps18.getText().toString()));
         }
 
-        if (binding.etReps19.getText().toString() != null ) {
+        if (!binding.etReps19.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps19.getText().toString()));
         }
 
-        if (binding.etReps20.getText().toString() != null ) {
+        if (!binding.etReps20.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps20.getText().toString()));
         }
 
-        if (binding.etReps21.getText().toString() != null ) {
+        return reps;
+    }
+
+    private List<Integer> addAllReps3() {
+        List<Integer> reps = new ArrayList<>();
+
+        if (!binding.etReps21.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps21.getText().toString()));
         }
 
-        if (binding.etReps22.getText().toString() != null ) {
+        if (!binding.etReps22.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps22.getText().toString()));
         }
 
-        if (binding.etReps23.getText().toString() != null ) {
+        if (!binding.etReps23.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps23.getText().toString()));
         }
 
-        if (binding.etReps24.getText().toString() != null ) {
+        if (!binding.etReps24.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps24.getText().toString()));
         }
 
-        if (binding.etReps25.getText().toString() != null ) {
+        if (!binding.etReps25.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps25.getText().toString()));
         }
 
-        if (binding.etReps26.getText().toString() != null ) {
+        if (!binding.etReps26.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps26.getText().toString()));
         }
 
-        if (binding.etReps27.getText().toString() != null ) {
+        if (!binding.etReps27.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps27.getText().toString()));
         }
 
-        if (binding.etReps28.getText().toString() != null ) {
+        if (!binding.etReps28.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps28.getText().toString()));
         }
 
-        if (binding.etReps29.getText().toString() != null ) {
+        if (!binding.etReps29.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps29.getText().toString()));
         }
 
-        if (binding.etReps30.getText().toString() != null ) {
+        if (!binding.etReps30.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps30.getText().toString()));
         }
 
-        if (binding.etReps31.getText().toString() != null ) {
+        return reps;
+    }
+
+    private List<Integer> addAllReps4() {
+
+        List<Integer> reps = new ArrayList<>();
+
+        if (!binding.etReps31.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps31.getText().toString()));
         }
 
-        if (binding.etReps32.getText().toString() != null ) {
+        if (!binding.etReps32.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps32.getText().toString()));
         }
 
-        if (binding.etReps33.getText().toString() != null ) {
+        if (!binding.etReps33.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps33.getText().toString()));
         }
 
-        if (binding.etReps34.getText().toString() != null ) {
+        if (!binding.etReps34.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps34.getText().toString()));
         }
 
-        if (binding.etReps35.getText().toString() != null ) {
+        if (!binding.etReps35.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps35.getText().toString()));
         }
 
-        if (binding.etReps36.getText().toString() != null ) {
+        if (!binding.etReps36.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps36.getText().toString()));
         }
 
-        if (binding.etReps37.getText().toString() != null ) {
+        if (!binding.etReps37.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps37.getText().toString()));
         }
 
-        if (binding.etReps38.getText().toString() != null ) {
+        if (!binding.etReps38.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps38.getText().toString()));
         }
 
-        if (binding.etReps39.getText().toString() != null ) {
+        if (!binding.etReps39.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps39.getText().toString()));
         }
 
-        if (binding.etReps40.getText().toString() != null ) {
+        if (!binding.etReps40.getText().toString().isEmpty()) {
             reps.add(Integer.parseInt(binding.etReps40.getText().toString()));
         }
 
         return reps;
     }
 
-    private void savePost(String exercise, Integer weight, List<Integer> reps, String title) throws ParseException {
+    private WorkoutJournal savePost(String exercise, Integer weight, List<Integer> reps, String title) throws ParseException {
         WorkoutJournal workoutJournal = new WorkoutJournal();
         workoutJournal.setTitle(title);
         workoutJournal.setUser(ParseUser.getCurrentUser());
@@ -1012,9 +1074,41 @@ public class WorkoutDetailsFragment extends Fragment {
                 }
                 Log.i(TAG, "Post save was successful!!");
 
-                FragmentManager fragmentManager = getFragmentManager();
-                Fragment fragment = new WorkoutFragment();
-                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+                // FRAGMENT CHANGE WAS HERE
+            }
+        });
+
+        return workoutJournal;
+    }
+
+    private void savePost(String exercise, Integer weight, List<Integer> reps, WorkoutJournal workoutJournal) throws ParseException {
+
+        Workout workout = new Workout();
+        //workout.setWeight(weight);
+        //workout.addRep(reps);
+        workout.setExercise(exercise);
+
+        WeightReps weightReps = new WeightReps();
+        weightReps.put("weight", weight);
+
+        weightReps.setReps(reps);
+
+        workout.put("journal", workoutJournal);
+        weightReps.put("workout", workout);
+        weightReps.put("user", currUser);
+
+
+        weightReps.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Error while saving", e);
+                    Toast.makeText(getContext(), "Error while saving", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Log.i(TAG, "Post save was successful!!");
+
+                // FRAGMENT CHANGE WAS HERE
             }
         });
     }

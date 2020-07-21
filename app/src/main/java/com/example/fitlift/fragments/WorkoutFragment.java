@@ -132,8 +132,7 @@ public class WorkoutFragment extends Fragment {
         query.findInBackground(new FindCallback<WeightReps>() {
             @Override
             public void done(List<WeightReps> weightReps, ParseException e) {
-                List<WeightReps> tempWoJournals;
-                tempWoJournals = new ArrayList<>();
+                List<WeightReps> tempWoJournals = new ArrayList<>();
 
                 if (e != null) {
                     Log.e(TAG, "Issue with getting posts ", e);
