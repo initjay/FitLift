@@ -33,9 +33,10 @@ public class WeightReps extends ParseObject {
         return getList(KEY_REPS);
     }
 
-    public void setReps(int reps) {
-        Integer rep = reps;
-        this.add(KEY_REPS, rep);
+    public void setReps(List<Integer> reps) {
+        for (int i = 0; i < reps.size(); i++) {
+            this.add(KEY_REPS, reps.get(i));
+        }
     }
 
     public ParseObject getWorkout () {

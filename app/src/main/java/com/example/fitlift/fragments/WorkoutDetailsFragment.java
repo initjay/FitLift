@@ -34,6 +34,7 @@ import com.parse.SaveCallback;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.fitlift.R.id.etReps2;
 import static com.example.fitlift.R.id.rl_exercise_entry;
@@ -90,7 +91,7 @@ public class WorkoutDetailsFragment extends Fragment {
             binding.etExercise1.setText(exercise);
             // TODO: WILL HAVE TO UPDATE TO ARRAY OF EXERCISES, WEIGHTS, AND REPS
             binding.etWeight1.setText(weight.toString());
-            binding.etReps1.setText(reps.get(0).toString());
+            binding.etReps1.setText(reps.toString());
 
         } else {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -105,8 +106,10 @@ public class WorkoutDetailsFragment extends Fragment {
                 // grab edit text data
                 String exercise = binding.etExercise1.getText().toString();
                 Integer weight = Integer.valueOf(binding.etWeight1.getText().toString());
-                Integer reps = Integer.valueOf(binding.etReps1.getText().toString());
+                //Integer.valueOf(binding.etReps1.getText().toString());
                 String title = binding.etTitle.getText().toString();
+                // Add all reps;
+                List<Integer> reps = addAllReps();
 
                 try {
                     savePost(exercise, weight, reps, title);
@@ -117,6 +120,7 @@ public class WorkoutDetailsFragment extends Fragment {
             }
         });
 
+        // TODO ADD MORE EXERCISES
         // Add more reps
         binding.etReps1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -280,6 +284,9 @@ public class WorkoutDetailsFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etExercise2.setVisibility(view.VISIBLE);
+                binding.etWeight2.setVisibility(view.VISIBLE);
+                binding.etReps11.setVisibility(view.VISIBLE);
 
                 // TODO: Add views dynamically
 //                LayoutInflater layoutInflater = getLayoutInflater().from(getContext());
@@ -304,10 +311,678 @@ public class WorkoutDetailsFragment extends Fragment {
             }
         });
 
+        // Add more reps
+
+        binding.etReps11.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps12.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps12.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps13.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps13.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps14.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps14.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps15.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps15.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps16.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps16.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps17.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps17.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps18.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps18.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps19.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps19.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps20.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        // Add new exercise entry
+        binding.etExercise2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etExercise3.setVisibility(view.VISIBLE);
+                binding.etWeight3.setVisibility(view.VISIBLE);
+                binding.etReps21.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        // Add more reps
+        binding.etReps21.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps22.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps22.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps23.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps23.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps24.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps24.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps25.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps25.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps26.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps26.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps27.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps27.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps28.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps28.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps29.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps29.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps30.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        // Add new exercise entry
+        binding.etExercise3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etExercise4.setVisibility(view.VISIBLE);
+                binding.etWeight4.setVisibility(view.VISIBLE);
+                binding.etReps31.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps31.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps32.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps32.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps33.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps33.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps34.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps34.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps35.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps35.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps36.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps36.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps37.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps37.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps38.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps38.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps39.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.etReps39.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.etReps40.setVisibility(view.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
     }
 
-    private void savePost(String exercise, Integer weight, Integer reps, String title) throws ParseException {
+    private List<Integer> addAllReps() {
+        
+        List<Integer> reps = new ArrayList<>();
+        
+        if (binding.etReps1.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps1.getText().toString()));
+        }
+
+        if (binding.etReps2.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps2.getText().toString()));
+        }
+
+        if (binding.etReps3.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps3.getText().toString()));
+        }
+
+        if (binding.etReps4.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps4.getText().toString()));
+        }
+
+        if (binding.etReps5.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps5.getText().toString()));
+        }
+
+        if (binding.etReps6.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps6.getText().toString()));
+        }
+
+        if (binding.etReps7.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps7.getText().toString()));
+        }
+
+        if (binding.etReps8.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps8.getText().toString()));
+        }
+
+        if (binding.etReps9.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps9.getText().toString()));
+        }
+
+        if (binding.etReps10.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps10.getText().toString()));
+        }
+
+        if (binding.etReps11.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps11.getText().toString()));
+        }
+
+        if (binding.etReps12.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps12.getText().toString()));
+        }
+
+        if (binding.etReps13.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps13.getText().toString()));
+        }
+
+        if (binding.etReps14.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps14.getText().toString()));
+        }
+
+        if (binding.etReps15.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps15.getText().toString()));
+        }
+
+        if (binding.etReps16.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps16.getText().toString()));
+        }
+
+        if (binding.etReps17.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps17.getText().toString()));
+        }
+
+        if (binding.etReps18.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps18.getText().toString()));
+        }
+
+        if (binding.etReps19.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps19.getText().toString()));
+        }
+
+        if (binding.etReps20.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps20.getText().toString()));
+        }
+
+        if (binding.etReps21.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps21.getText().toString()));
+        }
+
+        if (binding.etReps22.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps22.getText().toString()));
+        }
+
+        if (binding.etReps23.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps23.getText().toString()));
+        }
+
+        if (binding.etReps24.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps24.getText().toString()));
+        }
+
+        if (binding.etReps25.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps25.getText().toString()));
+        }
+
+        if (binding.etReps26.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps26.getText().toString()));
+        }
+
+        if (binding.etReps27.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps27.getText().toString()));
+        }
+
+        if (binding.etReps28.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps28.getText().toString()));
+        }
+
+        if (binding.etReps29.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps29.getText().toString()));
+        }
+
+        if (binding.etReps30.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps30.getText().toString()));
+        }
+
+        if (binding.etReps31.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps31.getText().toString()));
+        }
+
+        if (binding.etReps32.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps32.getText().toString()));
+        }
+
+        if (binding.etReps33.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps33.getText().toString()));
+        }
+
+        if (binding.etReps34.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps34.getText().toString()));
+        }
+
+        if (binding.etReps35.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps35.getText().toString()));
+        }
+
+        if (binding.etReps36.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps36.getText().toString()));
+        }
+
+        if (binding.etReps37.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps37.getText().toString()));
+        }
+
+        if (binding.etReps38.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps38.getText().toString()));
+        }
+
+        if (binding.etReps39.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps39.getText().toString()));
+        }
+
+        if (binding.etReps40.getText().toString() != null ) {
+            reps.add(Integer.parseInt(binding.etReps40.getText().toString()));
+        }
+
+        return reps;
+    }
+
+    private void savePost(String exercise, Integer weight, List<Integer> reps, String title) throws ParseException {
         WorkoutJournal workoutJournal = new WorkoutJournal();
         workoutJournal.setTitle(title);
         workoutJournal.setUser(ParseUser.getCurrentUser());
@@ -319,7 +994,8 @@ public class WorkoutDetailsFragment extends Fragment {
 
         WeightReps weightReps = new WeightReps();
         weightReps.put("weight", weight);
-        weightReps.add("reps", reps);
+
+        weightReps.setReps(reps);
 
         workout.put("journal", workoutJournal);
         weightReps.put("workout", workout);
