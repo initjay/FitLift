@@ -17,6 +17,8 @@ import com.example.fitlift.R;
  */
 public class MealFragment extends Fragment {
 
+    public static final String TAG = "MealFragment";
+
     public MealFragment() { }         // Required empty public constructor
 
     @Override
