@@ -7,7 +7,7 @@ import com.parse.ParseUser;
 @ParseClassName("WorkoutJournal")
 public class WorkoutJournal extends ParseObject {
 
-    public static final String TAG = "Workout Journal Class";
+    public static final String TAG = "WorkoutJournal Class";
 
     public static final String KEY_TITLE = "title";
     public static final String POINTER_USER = "user";
