@@ -100,7 +100,7 @@ public class WorkoutFragment extends Fragment {
                 }
                 // handles inserting the fragment to the container in main activity
                 //transaction.replace(R.id.flContainer, fragment).commit();
-                return false;
+                return true;
             }
         });
 

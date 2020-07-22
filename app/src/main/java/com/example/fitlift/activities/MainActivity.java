@@ -12,6 +12,7 @@ import android.view.View;
 import com.example.fitlift.R;
 import com.example.fitlift.databinding.ActivityMainBinding;
 import com.example.fitlift.fragments.FriendFragment;
+import com.example.fitlift.fragments.MealDetailsFragment;
 import com.example.fitlift.fragments.MealFragment;
 import com.example.fitlift.fragments.WorkoutDetailsFragment;
 import com.example.fitlift.fragments.WorkoutFragment;
@@ -64,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToDetails() {
         Fragment fragment = new WorkoutDetailsFragment();
+        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+    }
+
+    public void goToMenuDetails() {
+        Fragment fragment = new MealDetailsFragment();
         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
     }
 }

@@ -61,7 +61,7 @@
                 android:layout_below="@id/divider">
 
                 <RelativeLayout
-                    android:id="@+id/rl_exercise_entry"
+                    android:id="@+id/rl_meal_entry"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/divider">
