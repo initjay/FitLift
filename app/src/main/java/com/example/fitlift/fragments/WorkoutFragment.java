@@ -38,6 +38,8 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -133,23 +135,42 @@ public class WorkoutFragment extends Fragment {
             @Override
             public void done(List<WeightReps> weightReps, ParseException e) {
                 List<WeightReps> tempWoJournals = new ArrayList<>();
+                HashMap<String, WeightReps> uniqueJournals = new HashMap<String, WeightReps>();
 
                 if (e != null) {
                     Log.e(TAG, "Issue with getting posts ", e);
                     return;
                 }
                 // iterate through workouts fetched
+                WorkoutJournal prevWorkoutJournal = null;
+                
                 for (WeightReps weightRep : weightReps) {
                     Workout workout = (Workout) weightRep.getWorkout();
                     WorkoutJournal workoutJournal = null;
                     try {
-                        workoutJournal = (WorkoutJournal) workout.getWorkoutJournal().fetchIfNeeded();
+                        workoutJournal = workout.getWorkoutJournal().fetchIfNeeded();
+                        Log.i(TAG, "Worked");
                     } catch (ParseException ex) {
                         ex.printStackTrace();
                     }
-                    tempWoJournals.add(weightRep);
+                    //Log.i(TAG, "Workoutjournal: " + workoutJournal);
 
-                    Log.i(TAG, "Title: " + workoutJournal.getTitle() + ", Date: " + workoutJournal.getCreatedAt().toString());
+                    //tempWoJournals.add(weightRep);
+//                    if (uniqueJournals.put(workoutJournal.getObjectId(), workoutJournal) != prevWorkoutJournal) {
+//                        tempWoJournals.add(weightRep);
+                        //Log.i(TAG, "Title: " + workoutJournal.getTitle() + ", Date: " + workoutJournal.getCreatedAt().toString());
+//                    }
+
+                    uniqueJournals.put(workoutJournal.getObjectId(), weightRep);
+                    
+                   // prevWorkoutJournal = workoutJournal;
+                    //Log.i(TAG, "PrevWorkoutJournal: " + prevWorkoutJournal);
+
+                }
+
+                for (WeightReps weightRepsHash : uniqueJournals.values() ) {
+                    tempWoJournals.add(weightRepsHash);
+                    //Log.i(TAG, "Reps: " + weightRepsHash.getObjectId());
                 }
                 workoutJournals.addAll(tempWoJournals);
                 adapter.notifyDataSetChanged();
