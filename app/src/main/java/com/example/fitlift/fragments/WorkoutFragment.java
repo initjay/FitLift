@@ -138,7 +138,7 @@ public class WorkoutFragment extends Fragment {
                 HashMap<String, WeightReps> uniqueJournals = new HashMap<String, WeightReps>();
 
                 if (e != null) {
-                    Log.e(TAG, "Issue with getting posts ", e);
+                    Log.e(TAG, "Issue with getting workouts ", e);
                     return;
                 }
                 // iterate through workouts fetched
