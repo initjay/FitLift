@@ -47,8 +47,8 @@ public class WorkoutFragment extends Fragment {
 
     public static final String TAG = "WorkoutFragment";
     private RecyclerView rvWorkouts;
-    private WeightRepsAdapter adapter;
-    private List<WeightReps> workoutJournals;
+    private WorkoutJournalAdapter adapter;
+    private List<WorkoutJournal> workoutJournals;
     private String currUser = ParseUser.getCurrentUser().getObjectId();
     private ParseUser user;
     private ImageView ivProfileImg;
@@ -111,7 +111,7 @@ public class WorkoutFragment extends Fragment {
         }
 
         workoutJournals = new ArrayList<>();
-        adapter = new WeightRepsAdapter(getContext(), workoutJournals);
+        adapter = new WorkoutJournalAdapter(getContext(), workoutJournals);
 
         rvWorkouts.setAdapter(adapter);
 
@@ -122,57 +122,20 @@ public class WorkoutFragment extends Fragment {
     // Todo: store query responses locally as well for quicker access, wipe local storage when user signs out?
     private void queryWorkouts() {
 
-        ParseQuery<WeightReps> query = ParseQuery.getQuery(WeightReps.class);
-        // Only pull workout journals belonging to the current signed in user
-        query.include("workout.journal");
-        //ParseQuery<ParseUser> userParseQuery = ParseUser.getQuery();
-        //userParseQuery.whereMatchesKeyInQuery("objectId", "user", query);
+        ParseQuery<WorkoutJournal> query = ParseQuery.getQuery(WorkoutJournal.class);
         query.whereContains("user", currUser);
         query.setLimit(20);
         query.addDescendingOrder(WorkoutJournal.KEY_CREATED_AT);
-        // include woJournal class through pointer
-        query.findInBackground(new FindCallback<WeightReps>() {
+        query.findInBackground(new FindCallback<WorkoutJournal>() {
             @Override
-            public void done(List<WeightReps> weightReps, ParseException e) {
-                List<WeightReps> tempWoJournals = new ArrayList<>();
-                HashMap<String, WeightReps> uniqueJournals = new HashMap<String, WeightReps>();
+            public void done(List<WorkoutJournal> journals, ParseException e) {
 
                 if (e != null) {
                     Log.e(TAG, "Issue with getting workouts ", e);
                     return;
                 }
-                // iterate through workouts fetched
-                WorkoutJournal prevWorkoutJournal = null;
-                
-                for (WeightReps weightRep : weightReps) {
-                    Workout workout = (Workout) weightRep.getWorkout();
-                    WorkoutJournal workoutJournal = null;
-                    try {
-                        workoutJournal = workout.getWorkoutJournal().fetchIfNeeded();
-                        Log.i(TAG, "Worked");
-                    } catch (ParseException ex) {
-                        ex.printStackTrace();
-                    }
-                    //Log.i(TAG, "Workoutjournal: " + workoutJournal);
 
-                    //tempWoJournals.add(weightRep);
-//                    if (uniqueJournals.put(workoutJournal.getObjectId(), workoutJournal) != prevWorkoutJournal) {
-//                        tempWoJournals.add(weightRep);
-                        //Log.i(TAG, "Title: " + workoutJournal.getTitle() + ", Date: " + workoutJournal.getCreatedAt().toString());
-//                    }
-
-                    uniqueJournals.put(workoutJournal.getObjectId(), weightRep);
-                    
-                   // prevWorkoutJournal = workoutJournal;
-                    //Log.i(TAG, "PrevWorkoutJournal: " + prevWorkoutJournal);
-
-                }
-
-                for (WeightReps weightRepsHash : uniqueJournals.values() ) {
-                    tempWoJournals.add(weightRepsHash);
-                    //Log.i(TAG, "Reps: " + weightRepsHash.getObjectId());
-                }
-                workoutJournals.addAll(tempWoJournals);
+                workoutJournals.addAll(journals);
                 adapter.notifyDataSetChanged();
             }
         });
