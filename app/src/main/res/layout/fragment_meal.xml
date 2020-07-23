@@ -45,9 +45,9 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvWorkoutsMealFragment"
+        android:id="@+id/rvMealFragments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"/>
+        android:layout_below="@id/toolbar_meal" />
 
 </RelativeLayout>
