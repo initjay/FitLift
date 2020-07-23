@@ -76,10 +76,11 @@ public class WorkoutJournalAdapter extends RecyclerView.Adapter<WorkoutJournalAd
                 WorkoutJournal workoutJournal = workoutJournals.get(position);
                 // bundle needed to pass data to other fragments
                 Bundle bundle = new Bundle();
-                bundle.putInt("Adapter position", position);
-                bundle.putString("Title", workoutJournal.getTitle());
-                bundle.putString("Date", workoutJournal.getCreatedAt().toString());
-                // TODO: WILL HAVE TO UPDATE TO ARRAY OF EXERCISES, WEIGHTS, AND REPS
+                bundle.putString("objectId", workoutJournal.getObjectId());
+//                bundle.putInt("Adapter position", position);
+//                bundle.putString("Title", workoutJournal.getTitle());
+//                bundle.putString("Date", workoutJournal.getCreatedAt().toString());
+//                // TODO: WILL HAVE TO UPDATE TO ARRAY OF EXERCISES, WEIGHTS, AND REPS
 
                 Fragment fragment = new WorkoutDetailsFragment();
                 // attach bundle to fragment
