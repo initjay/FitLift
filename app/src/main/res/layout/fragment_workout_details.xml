@@ -54,6 +54,12 @@
                 android:layout_marginEnd="0dp"
                 android:background="?android:attr/listDivider" />
 
+            <ScrollView
+                android:id="@id/vertical_scroll_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/divider">
+
             <HorizontalScrollView
                 android:id="@id/horizontal_scroll_view"
                 android:layout_width="wrap_content"
@@ -115,7 +121,7 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps3"
@@ -129,27 +135,40 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/etWeight2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etWeight1"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:ems="5"
+                        android:hint="Weight"
+                        android:inputType="number" />
 
                     <EditText
                         android:id="@+id/etReps4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise1"
+                        android:layout_below="@+id/etReps1"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@+id/etReps3"
+                        android:layout_toEndOf="@+id/etWeight2"
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise1"
+                        android:layout_below="@+id/etReps1"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -157,13 +176,13 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise1"
+                        android:layout_below="@+id/etReps1"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -171,27 +190,40 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
-                        <EditText
+                    <EditText
+                        android:id="@+id/etWeight3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etWeight2"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:ems="5"
+                        android:hint="Weight"
+                        android:inputType="number" />
+
+                    <EditText
                         android:id="@+id/etReps7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise1"
+                        android:layout_below="@+id/etReps4"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@+id/etReps6"
+                        android:layout_toEndOf="@+id/etWeight3"
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise1"
+                        android:layout_below="@+id/etReps4"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -199,13 +231,13 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise1"
+                        android:layout_below="@+id/etReps4"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -213,25 +245,12 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
-                    <EditText
-                        android:id="@+id/etReps10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise1"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@+id/etReps9"
-                        android:ems="3"
-                        android:hint="Reps"
-                        android:inputType="number"
-                        android:visibility="gone"/>
 
                     <EditText
                     android:id="@+id/etExercise2"
-                    android:layout_below="@+id/etWeight1"
+                    android:layout_below="@+id/etWeight3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -240,10 +259,10 @@
                     android:ems="5"
                     android:hint="Exercise"
                     android:inputType="textPersonName"
-                    android:visibility="gone"/>
+                    android:visibility="visible"/>
 
                     <EditText
-                        android:id="@+id/etWeight2"
+                        android:id="@+id/etWeight4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/etExercise2"
@@ -254,7 +273,21 @@
                         android:ems="5"
                         android:hint="Weight"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/etReps10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etExercise2"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_toEndOf="@+id/etWeight4"
+                        android:ems="3"
+                        android:hint="Reps"
+                        android:inputType="number"
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps11"
@@ -263,12 +296,12 @@
                         android:layout_below="@+id/etExercise2"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_toEndOf="@+id/etWeight2"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@+id/etReps10"
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps12"
@@ -282,27 +315,41 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/etWeight5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etWeight4"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:ems="5"
+                        android:hint="Weight"
+                        android:inputType="number"
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise2"
+                        android:layout_below="@+id/etReps10"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@+id/etReps12"
+                        android:layout_toEndOf="@+id/etWeight5"
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise2"
+                        android:layout_below="@+id/etReps10"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -310,13 +357,13 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise2"
+                        android:layout_below="@+id/etReps10"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -324,27 +371,41 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/etWeight6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etWeight5"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:ems="5"
+                        android:hint="Weight"
+                        android:inputType="number"
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise2"
+                        android:layout_below="@+id/etReps13"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@+id/etReps15"
+                        android:layout_toEndOf="@+id/etWeight6"
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps17"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise2"
+                        android:layout_below="@+id/etReps13"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -352,13 +413,13 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps18"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise2"
+                        android:layout_below="@+id/etReps13"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -366,39 +427,12 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
-                    <EditText
-                        android:id="@+id/etReps19"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise2"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@+id/etReps18"
-                        android:ems="3"
-                        android:hint="Reps"
-                        android:inputType="number"
-                        android:visibility="gone"/>
-
-                    <EditText
-                        android:id="@+id/etReps20"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise2"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@+id/etReps19"
-                        android:ems="3"
-                        android:hint="Reps"
-                        android:inputType="number"
-                        android:visibility="gone"/>
 
                     <EditText
                         android:id="@+id/etExercise3"
-                        android:layout_below="@+id/etWeight2"
+                        android:layout_below="@+id/etWeight6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
@@ -407,10 +441,10 @@
                         android:ems="5"
                         android:hint="Exercise"
                         android:inputType="textPersonName"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
-                        android:id="@+id/etWeight3"
+                        android:id="@+id/etWeight7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/etExercise3"
@@ -421,7 +455,35 @@
                         android:ems="5"
                         android:hint="Weight"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/etReps19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etExercise3"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_toEndOf="@+id/etWeight7"
+                        android:ems="3"
+                        android:hint="Reps"
+                        android:inputType="number"
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/etReps20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etExercise3"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@+id/etReps19"
+                        android:ems="3"
+                        android:hint="Reps"
+                        android:inputType="number"
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps21"
@@ -430,32 +492,46 @@
                         android:layout_below="@+id/etExercise3"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_toEndOf="@+id/etWeight3"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@+id/etReps20"
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/etWeight8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etWeight7"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:ems="5"
+                        android:hint="Weight"
+                        android:inputType="number"
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise3"
+                        android:layout_below="@+id/etWeight7"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@+id/etReps21"
+                        android:layout_toEndOf="@+id/etWeight8"
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps23"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise3"
+                        android:layout_below="@+id/etWeight7"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -463,13 +539,13 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise3"
+                        android:layout_below="@+id/etWeight7"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -477,27 +553,41 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/etWeight9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etWeight8"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:ems="5"
+                        android:hint="Weight"
+                        android:inputType="number"
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps25"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise3"
+                        android:layout_below="@+id/etWeight8"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@+id/etReps24"
+                        android:layout_toEndOf="@+id/etWeight9"
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps26"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise3"
+                        android:layout_below="@+id/etWeight8"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -505,13 +595,13 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps27"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise3"
+                        android:layout_below="@+id/etWeight8"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -519,53 +609,11 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
-
-                    <EditText
-                        android:id="@+id/etReps28"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise3"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@+id/etReps27"
-                        android:ems="3"
-                        android:hint="Reps"
-                        android:inputType="number"
-                        android:visibility="gone"/>
-
-                    <EditText
-                        android:id="@+id/etReps29"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise3"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@+id/etReps28"
-                        android:ems="3"
-                        android:hint="Reps"
-                        android:inputType="number"
-                        android:visibility="gone"/>
-
-                    <EditText
-                        android:id="@+id/etReps30"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise3"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@+id/etReps29"
-                        android:ems="3"
-                        android:hint="Reps"
-                        android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etExercise4"
-                        android:layout_below="@+id/etWeight3"
+                        android:layout_below="@+id/etWeight9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
@@ -574,10 +622,10 @@
                         android:ems="5"
                         android:hint="Exercise"
                         android:inputType="textPersonName"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
-                        android:id="@+id/etWeight4"
+                        android:id="@+id/etWeight10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/etExercise4"
@@ -588,27 +636,83 @@
                         android:ems="5"
                         android:hint="Weight"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
-                        android:id="@+id/etReps31"
+                        android:id="@+id/etReps28"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/etExercise4"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="4dp"
-                        android:layout_toEndOf="@+id/etWeight3"
+                        android:layout_toEndOf="@+id/etWeight10"
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/etReps29"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etExercise4"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@+id/etReps28"
+                        android:ems="3"
+                        android:hint="Reps"
+                        android:inputType="number"
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/etReps30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etExercise4"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@+id/etReps29"
+                        android:ems="3"
+                        android:hint="Reps"
+                        android:inputType="number"
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/etWeight11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etWeight10"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:ems="5"
+                        android:hint="Weight"
+                        android:inputType="number"
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/etReps31"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etWeight10"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@+id/etWeight11"
+                        android:ems="3"
+                        android:hint="Reps"
+                        android:inputType="number"
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps32"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise4"
+                        android:layout_below="@+id/etWeight10"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -616,13 +720,13 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps33"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise4"
+                        android:layout_below="@+id/etWeight10"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -630,27 +734,41 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/etWeight12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etWeight11"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:ems="5"
+                        android:hint="Weight"
+                        android:inputType="number"
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps34"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise4"
+                        android:layout_below="@+id/etWeight11"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@+id/etReps33"
+                        android:layout_toEndOf="@+id/etWeight12"
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps35"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise4"
+                        android:layout_below="@+id/etWeight11"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -658,13 +776,13 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
+                        android:visibility="visible"/>
 
                     <EditText
                         android:id="@+id/etReps36"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise4"
+                        android:layout_below="@+id/etWeight11"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -672,75 +790,18 @@
                         android:ems="3"
                         android:hint="Reps"
                         android:inputType="number"
-                        android:visibility="gone"/>
-
-                    <EditText
-                        android:id="@+id/etReps37"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise4"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@+id/etReps36"
-                        android:ems="3"
-                        android:hint="Reps"
-                        android:inputType="number"
-                        android:visibility="gone"/>
-
-                    <EditText
-                        android:id="@+id/etReps38"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise4"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@+id/etReps37"
-                        android:ems="3"
-                        android:hint="Reps"
-                        android:inputType="number"
-                        android:visibility="gone"/>
-
-                    <EditText
-                        android:id="@+id/etReps39"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise4"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@+id/etReps38"
-                        android:ems="3"
-                        android:hint="Reps"
-                        android:inputType="number"
-                        android:visibility="gone"/>
-
-                    <EditText
-                        android:id="@+id/etReps40"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/etExercise4"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_toEndOf="@+id/etReps39"
-                        android:ems="3"
-                        android:hint="Reps"
-                        android:inputType="number"
-                        android:visibility="gone"/>
-
+                        android:visibility="visible"/>
 
                 </RelativeLayout>
 
             </HorizontalScrollView>
-
+            </ScrollView>
 
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/horizontal_scroll_view"
+                android:layout_below="@+id/vertical_scroll_view"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
