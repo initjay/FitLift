@@ -36,7 +36,7 @@ public class MealJournal extends ParseObject {
     }
 
     public void setNutrients (List<String> nutrients) {
-        addAll(KEY_NUTRIENTS, nutrients);
+        put(KEY_NUTRIENTS, nutrients);
     }
 
     public List<Integer> getAmounts () {
@@ -44,7 +44,7 @@ public class MealJournal extends ParseObject {
     }
 
     public void setAmounts (List<Integer> amounts) {
-        addAll(KEY_AMOUNTS, amounts);
+        put(KEY_AMOUNTS, amounts);
     }
 
 }

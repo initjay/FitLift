@@ -14,8 +14,9 @@ public class Workout extends ParseObject {
 
     public static final String POINTER_WORKOUTJOURNAL = "journal";
     public static final String KEY_EXERCISE = "exercise";
+    public static final String KEY_WEIGHT_REPS = "weight_reps";
     // get workout journal that workout object points to
-    public ParseObject workoutJournal = this.fetchIfNeeded().getParseObject(POINTER_WORKOUTJOURNAL);
+    //public ParseObject workoutJournal = this.fetchIfNeeded().getParseObject(POINTER_WORKOUTJOURNAL);
 
     public Workout() throws ParseException {
         // needed for fetchIfNeeded
@@ -29,11 +30,19 @@ public class Workout extends ParseObject {
         put(KEY_EXERCISE, exercise);
     }
 
-    public ParseObject getWorkoutJournal () {
-        return workoutJournal;
+    public List<Integer> getWeightReps () {
+        return getList(KEY_WEIGHT_REPS);
     }
 
-    public void setWorkoutJournal (ParseObject workoutJournal) {
+    public void setWeightReps (List<Integer> weightReps) {
+        put(KEY_WEIGHT_REPS, weightReps);
+    }
+
+    public WorkoutJournal getWorkoutJournal () {
+        return (WorkoutJournal) get(POINTER_WORKOUTJOURNAL);
+    }
+
+    public void setWorkoutJournal (WorkoutJournal workoutJournal) {
         put(POINTER_WORKOUTJOURNAL, workoutJournal);
     }
 
