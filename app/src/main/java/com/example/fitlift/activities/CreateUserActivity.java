@@ -10,8 +10,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.fitlift.MainActivity;
-import com.example.fitlift.R;
 import com.example.fitlift.databinding.ActivityCreateUserBinding;
 import com.parse.ParseException;
 import com.parse.ParseUser;

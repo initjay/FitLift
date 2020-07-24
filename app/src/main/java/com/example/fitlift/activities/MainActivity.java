@@ -1,4 +1,4 @@
-package com.example.fitlift;
+package com.example.fitlift.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,9 +9,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.fitlift.R;
 import com.example.fitlift.databinding.ActivityMainBinding;
 import com.example.fitlift.fragments.FriendFragment;
+import com.example.fitlift.fragments.MealDetailsFragment;
 import com.example.fitlift.fragments.MealFragment;
+import com.example.fitlift.fragments.WorkoutDetailsFragment;
 import com.example.fitlift.fragments.WorkoutFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.ParseUser;
@@ -58,5 +61,15 @@ public class MainActivity extends AppCompatActivity {
 
         // Set default selection for fragment
         binding.bottomNavigation.setSelectedItemId(R.id.action_workout);
+    }
+
+    public void goToDetails() {
+        Fragment fragment = new WorkoutDetailsFragment();
+        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+    }
+
+    public void goToMenuDetails() {
+        Fragment fragment = new MealDetailsFragment();
+        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
     }
 }
