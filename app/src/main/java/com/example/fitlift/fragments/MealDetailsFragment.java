@@ -77,7 +77,7 @@ public class MealDetailsFragment extends Fragment {
                 @Override
                 public void done(MealJournal object, ParseException e) {
                     if (e != null) {
-                        Log.e(TAG, "Error while fetching existing object", e);
+                        Log.e(TAG, "Error while fetching existing meal", e);
                         return;
                     }
 

@@ -68,10 +68,10 @@ public class WeightRepsAdapter extends RecyclerView.Adapter<WeightRepsAdapter.Vi
         public void bind(WeightReps workout) {
 
             Workout workoutEntry = (Workout) workout.getWorkout();
-            WorkoutJournal workoutJournalEntry = (WorkoutJournal) workoutEntry.getWorkoutJournal();
+            //WorkoutJournal workoutJournalEntry = (WorkoutJournal) workoutEntry.getWorkoutJournal();
 
-            binding.tvDate.setText(workoutJournalEntry.getCreatedAt().toString());
-            binding.etTitle.setText(workoutJournalEntry.getTitle());
+            //binding.tvDate.setText(workoutJournalEntry.getCreatedAt().toString());
+            //binding.etTitle.setText(workoutJournalEntry.getTitle());
         }
 
         @Override
@@ -85,15 +85,15 @@ public class WeightRepsAdapter extends RecyclerView.Adapter<WeightRepsAdapter.Vi
                 WeightReps workout = workouts.get(position);
                 // workout and workoutjournal objects
                 Workout workoutEntry = (Workout) workout.getWorkout();
-                WorkoutJournal workoutJournalEntry = (WorkoutJournal) workoutEntry.getWorkoutJournal();
+               // WorkoutJournal workoutJournalEntry = (WorkoutJournal) workoutEntry.getWorkoutJournal();
 
                 // bundle needed to pass data to other fragments
                 Bundle bundle = new Bundle();
                 bundle.putInt("Adapter position", position);
-                bundle.putString("Title", workoutJournalEntry.getTitle());
-                bundle.putString("Date", workoutJournalEntry.getCreatedAt().toString());
+               // bundle.putString("Title", workoutJournalEntry.getTitle());
+                //bundle.putString("Date", workoutJournalEntry.getCreatedAt().toString());
                 // TODO: WILL HAVE TO UPDATE TO ARRAY OF EXERCISES, WEIGHTS, AND REPS
-                bundle.putString("Exercise", workoutEntry.getExercise());
+                //bundle.putString("Exercise", workoutEntry.getExercise());
                 bundle.putInt("Weight", workout.getWeight());
                 bundle.putIntegerArrayList("Reps", (ArrayList<Integer>) workout.getReps());
 

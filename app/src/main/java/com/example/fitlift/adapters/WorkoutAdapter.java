@@ -60,7 +60,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.ViewHold
         public void bind(Workout workout) throws ParseException {
             // Bind the workout data to the view elements
             binding.tvDate.setText(workout.getCreatedAt().toString());
-            binding.etTitle.setText(workout.getExercise());
+            binding.etTitle.setText(workout.getExercises().get(0));
         }
     }
 }
