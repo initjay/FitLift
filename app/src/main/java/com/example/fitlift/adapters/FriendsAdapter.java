@@ -1,13 +1,17 @@
 package com.example.fitlift.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.fitlift.WorkoutJournal;
+import com.example.fitlift.databinding.ItemFriendBinding;
+import com.example.fitlift.databinding.ItemWorkoutBinding;
 import com.parse.ParseUser;
 
 import java.util.List;
@@ -27,24 +31,38 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-
-        return null;
+        ItemFriendBinding binding = ItemFriendBinding.inflate(LayoutInflater.from(context), parent, false);
+        return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        WorkoutJournal workoutJournal = friends.get(position);
+        holder.bind(workoutJournal);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return friends.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
+
+        ItemFriendBinding binding;
+
+        public ViewHolder(@NonNull ItemFriendBinding b) {
+            super(b.getRoot());
+            this.binding = b;
+        }
+
+        public void bind(WorkoutJournal workoutJournal) {
+            binding.tvFriendDate.setText(workoutJournal.getCreatedAt().toString());
+            binding.tvFriendTitle.setText(workoutJournal.getTitle());
+            binding.tvFriendUsername.setText(workoutJournal.getUser().getUsername());
+
+            if (workoutJournal.getUser().getParseFile("profileImg") != null) {
+                Glide.with(context).load(workoutJournal.getUser().getParseFile("profileImg").getUrl()).circleCrop().into(binding.ivFriendProfileImg);
+            }
         }
     }
 }
