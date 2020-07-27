@@ -20,12 +20,13 @@
     <FrameLayout
         android:id="@+id/child_fragment_friends_search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/friends_toolbar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFriends"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/friends_toolbar"/>
+        android:layout_below="@id/child_fragment_friends_search"/>
 
 </RelativeLayout>

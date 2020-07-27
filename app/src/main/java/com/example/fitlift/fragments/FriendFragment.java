@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -122,8 +123,15 @@ public class FriendFragment extends Fragment {
                 }
 
                 Toast.makeText(getContext(), "Users found: " + query, Toast.LENGTH_SHORT).show();
+                insertSearchResultsNestedFragment();
             }
         });
+    }
+
+    private void insertSearchResultsNestedFragment() {
+        Fragment childFragment = new SearchResultsFragment();
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.replace(R.id.child_fragment_friends_search, childFragment).commit();
     }
 
     private void queryFriends() {
