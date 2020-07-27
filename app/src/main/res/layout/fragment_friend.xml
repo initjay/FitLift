@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.FriendFragment">
+    tools:context=".fragments.FriendFragment"
+    android:fitsSystemWindows="true">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/friends_toolbar"
@@ -13,8 +15,12 @@
         app:menu="@menu/menu_friends_toolbar"
         android:layout_marginBottom="16dp"
         android:background="#A3A2A2"
-        app:title="@string/app_name"
-        ></androidx.appcompat.widget.Toolbar>
+        app:title="@string/app_name"/>
+
+    <FrameLayout
+        android:id="@+id/child_fragment_friends_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFriends"

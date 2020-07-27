@@ -1,9 +1,12 @@
 package com.example.fitlift.fragments;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
@@ -17,10 +20,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.fitlift.R;
 import com.example.fitlift.WorkoutJournal;
+import com.example.fitlift.activities.MainActivity;
 import com.example.fitlift.adapters.FriendsAdapter;
+import com.example.fitlift.databinding.FragmentFriendBinding;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -37,56 +44,37 @@ public class FriendFragment extends Fragment {
     private RecyclerView rvFriends;
     private FriendsAdapter adapter;
     private List<WorkoutJournal> friends;
+    private MainActivity activity;
+    private FragmentFriendBinding binding;
+
+    private SearchView searchView = null;
+    private SearchView.OnQueryTextListener queryTextListener;
 
     public FriendFragment() { }         // Required empty public constructor
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setHasOptionsMenu(true);
+        activity = (MainActivity) getActivity();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_friend, container, false);
-    }
-
-    // TODO: ADD SEARCH HINT
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_friends_toolbar, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                // perform query here
-
-                // workaround to avoid issues with some emulators and keyboard devices firing twice if a keyboard enter is used
-                // see https://code.google.com/p/android/issues/detail?id=24599
-                searchView.clearFocus();
-
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-
-        super.onCreateOptionsMenu(menu, inflater);
+        binding = FragmentFriendBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        rvFriends = view.findViewById(R.id.rvFriends);
+        Toolbar toolbar = binding.friendsToolbar;
+        activity.setSupportActionBar(toolbar);
+
+        rvFriends = binding.rvFriends;
 
         friends = new ArrayList<>();
         adapter = new FriendsAdapter(getContext(), friends);
@@ -95,6 +83,47 @@ public class FriendFragment extends Fragment {
 
         rvFriends.setLayoutManager(new LinearLayoutManager(getContext()));
         queryFriends();
+
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+
+        inflater.inflate(R.menu.menu_friends_toolbar, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                fetchUsers(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+    }
+
+    private void fetchUsers(final String query) {
+        ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+        userQuery.whereEqualTo("username", query);
+
+        userQuery.findInBackground(new FindCallback<ParseUser>() {
+            @Override
+            public void done(List<ParseUser> objects, ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Issue with searching users", e);
+                    return;
+                }
+
+                Toast.makeText(getContext(), "Users found: " + query, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void queryFriends() {
