@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.example.fitlift.WorkoutJournal;
 import com.example.fitlift.databinding.ItemFriendBinding;
 import com.example.fitlift.databinding.ItemWorkoutBinding;
+import com.parse.ParseException;
 import com.parse.ParseUser;
 
 import java.util.List;
@@ -38,7 +39,11 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         WorkoutJournal workoutJournal = friends.get(position);
-        holder.bind(workoutJournal);
+        try {
+            holder.bind(workoutJournal);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -55,10 +60,10 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
             this.binding = b;
         }
 
-        public void bind(WorkoutJournal workoutJournal) {
+        public void bind(WorkoutJournal workoutJournal) throws ParseException {
             binding.tvFriendDate.setText(workoutJournal.getCreatedAt().toString());
             binding.tvFriendTitle.setText(workoutJournal.getTitle());
-            binding.tvFriendUsername.setText(workoutJournal.getUser().getUsername());
+            binding.tvFriendUsername.setText(workoutJournal.getUser().fetchIfNeeded().getUsername());
 
             if (workoutJournal.getUser().getParseFile("profileImg") != null) {
                 Glide.with(context).load(workoutJournal.getUser().getParseFile("profileImg").getUrl()).circleCrop().into(binding.ivFriendProfileImg);
