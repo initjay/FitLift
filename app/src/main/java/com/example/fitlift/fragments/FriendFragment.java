@@ -35,12 +35,13 @@ public class FriendFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_friend, container, false);
     }
 
+    // TODO: ADD SEARCH HINT
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_friends_toolbar, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-        
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
