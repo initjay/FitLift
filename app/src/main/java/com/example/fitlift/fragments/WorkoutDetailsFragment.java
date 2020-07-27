@@ -9,22 +9,16 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.fitlift.MealJournal;
 import com.example.fitlift.R;
-import com.example.fitlift.WeightReps;
 import com.example.fitlift.Workout;
 import com.example.fitlift.WorkoutJournal;
 import com.example.fitlift.databinding.FragmentWorkoutDetailsBinding;
-import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -34,7 +28,6 @@ import com.parse.SaveCallback;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 // TODO fix back button to go back to workoutFragment

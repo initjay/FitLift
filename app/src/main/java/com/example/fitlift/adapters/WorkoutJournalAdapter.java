@@ -13,7 +13,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fitlift.R;
-import com.example.fitlift.WeightReps;
 import com.example.fitlift.WorkoutJournal;
 import com.example.fitlift.databinding.ItemWorkoutJournalBinding;
 import com.example.fitlift.fragments.WorkoutDetailsFragment;

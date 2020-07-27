@@ -7,8 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,27 +17,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.fitlift.R;
-import com.example.fitlift.WeightReps;
-import com.example.fitlift.Workout;
 import com.example.fitlift.WorkoutJournal;
 import com.example.fitlift.activities.LoginActivity;
 import com.example.fitlift.activities.MainActivity;
-import com.example.fitlift.adapters.WeightRepsAdapter;
-import com.example.fitlift.adapters.WorkoutAdapter;
 import com.example.fitlift.adapters.WorkoutJournalAdapter;
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 
 
