@@ -10,10 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,6 +30,7 @@ import com.example.fitlift.R;
 import com.example.fitlift.WorkoutJournal;
 import com.example.fitlift.activities.MainActivity;
 import com.example.fitlift.adapters.FriendsAdapter;
+import com.example.fitlift.adapters.SearchResultsAdapter;
 import com.example.fitlift.databinding.FragmentFriendBinding;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -81,7 +84,6 @@ public class FriendFragment extends Fragment {
         adapter = new FriendsAdapter(getContext(), friends);
 
         rvFriends.setAdapter(adapter);
-
         rvFriends.setLayoutManager(new LinearLayoutManager(getContext()));
         queryFriends();
 
@@ -105,14 +107,32 @@ public class FriendFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                if (!newText.isEmpty()) {
+                    fetchUsers(newText);
+                }
                 return false;
             }
         });
+
+        item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem menuItem) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem menuItem) {
+                Toast.makeText(activity, "Search Closed", Toast.LENGTH_SHORT).show();
+                //getFragmentManager().popBackStackImmediate();
+                return true;
+            }
+        });
+
     }
 
     private void fetchUsers(final String query) {
         ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
-        userQuery.whereEqualTo("username", query);
+        userQuery.whereContains("username", query);
 
         userQuery.findInBackground(new FindCallback<ParseUser>() {
             @Override
@@ -122,15 +142,20 @@ public class FriendFragment extends Fragment {
                     return;
                 }
 
-                Toast.makeText(getContext(), "Users found: " + query, Toast.LENGTH_SHORT).show();
-                insertSearchResultsNestedFragment();
+                insertSearchResultsNestedFragment(objects);
             }
         });
     }
 
-    private void insertSearchResultsNestedFragment() {
+    // TODO WORK ON FRAGMENT STACK TO GET BACK TO FRIEND TIMELINE WITH BACK BUTTON
+    private void insertSearchResultsNestedFragment(List<ParseUser> objects) {
         Fragment childFragment = new SearchResultsFragment();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("users", (ArrayList<? extends Parcelable>) objects);
+        childFragment.setArguments(bundle);
+        //transaction.addToBackStack(null);
         transaction.replace(R.id.child_fragment_friends_search, childFragment).commit();
     }
 
