@@ -107,9 +107,10 @@ public class FriendFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (!newText.isEmpty()) {
-                    fetchUsers(newText);
-                }
+                // TODO: FIX WHERE FRAGMENT IS NOT RECOGNIZING WHICH USER FOLLOW/UNFOLLOW BUTTON IS CLICKED
+//                if (!newText.isEmpty()) {
+//                    fetchUsers(newText);
+//                }
                 return false;
             }
         });
@@ -133,6 +134,7 @@ public class FriendFragment extends Fragment {
     private void fetchUsers(final String query) {
         ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
         userQuery.whereContains("username", query);
+        userQuery.whereNotEqualTo("username", ParseUser.getCurrentUser().getUsername());
 
         userQuery.findInBackground(new FindCallback<ParseUser>() {
             @Override
