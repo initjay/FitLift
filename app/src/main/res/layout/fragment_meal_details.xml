@@ -12,6 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/btnAttachImg"
         app:cardCornerRadius="8dp">
 
         <RelativeLayout
@@ -54,17 +56,23 @@
                 android:layout_marginEnd="0dp"
                 android:background="?android:attr/listDivider" />
 
-            <HorizontalScrollView
-                android:id="@id/horizontal_scroll_view"
+            <ScrollView
+                android:id="@+id/meal_vertical_scroll_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/divider">
+                android:layout_below="@id/divider"
+                android:scrollbars="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                 <RelativeLayout
                     android:id="@+id/rl_meal_entry"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/divider">
+                    android:layout_below="@id/meal_vertical_scroll_view">
 
                     <EditText
                         android:id="@+id/etMealDescription"
@@ -200,17 +208,19 @@
 
                 </RelativeLayout>
 
-            </HorizontalScrollView>
+                <ImageView
+                    android:id="@+id/ivMealImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_below="@id/rl_meal_entry"
+                    tools:srcCompat="@tools:sample/avatars"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="16dp"
+                    android:visibility="gone"/>
 
-            <ImageView
-                android:id="@+id/ivMealImage"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@id/horizontal_scroll_view"
-                tools:srcCompat="@tools:sample/avatars"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="16dp"
-                android:visibility="gone"/>
+                </LinearLayout>
+
+            </ScrollView>
 
         </RelativeLayout>
 
@@ -220,7 +230,7 @@
         android:id="@+id/btnAttachImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cvMeal"
+        android:layout_above="@+id/btnSave"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
@@ -230,10 +240,10 @@
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnAttachImg"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:layout_alignParentBottom="true"
         android:text="Save" />
 
 

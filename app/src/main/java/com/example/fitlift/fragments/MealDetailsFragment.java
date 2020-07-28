@@ -1,6 +1,8 @@
 package com.example.fitlift.fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,8 +20,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.fitlift.MealJournal;
 import com.example.fitlift.R;
 import com.example.fitlift.databinding.FragmentMealDetailsBinding;
@@ -36,6 +40,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 public class MealDetailsFragment extends Fragment {
 
@@ -105,7 +111,8 @@ public class MealDetailsFragment extends Fragment {
                     binding.etMealDescription.setText(description);
 
                     if (mealImage != null) {
-
+                        Glide.with(getContext()).load(mealImage.getUrl()).into(binding.ivMealImage);
+                        binding.ivMealImage.setVisibility(View.VISIBLE);
                     }
 
                     int nutrientSize = nutrients.size();
@@ -223,9 +230,9 @@ public class MealDetailsFragment extends Fragment {
                 }
 
                 if (mealJournalUpdate) {
-                    savePostUpdate(currTitle, currMealDescription, nutrients, amounts, updateObject);
+                    savePostUpdate(currTitle, currMealDescription, nutrients, amounts, updateObject, photoFile);
                 } else {
-                    savePost(currTitle, currMealDescription, nutrients, amounts);
+                    savePost(currTitle, currMealDescription, nutrients, amounts, photoFile);
                 }
             }
         });
@@ -251,6 +258,22 @@ public class MealDetailsFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // by this point we have the camera photo on disk
+                Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
+                // RESIZE BITMAP, see section below
+                // Load the taken image into a preview
+                binding.ivMealImage.setImageBitmap(takenImage);
+                binding.ivMealImage.setVisibility(View.VISIBLE);
+            } else { // Result was a failure
+                Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
     // Returns the File for a photo stored on disk given the fileName
     public File getPhotoFileUri(String fileName) {
         // Get safe storage directory for photos
@@ -267,11 +290,15 @@ public class MealDetailsFragment extends Fragment {
         return new File(mediaStorageDir.getPath() + File.separator + fileName);
     }
 
-    private void savePostUpdate(String currTitle, String currMealDescription, List<String> nutrients, List<Integer> amounts, MealJournal updateObject) {
+    private void savePostUpdate(String currTitle, String currMealDescription, List<String> nutrients, List<Integer> amounts, MealJournal updateObject, File photoFile) {
         updateObject.setTitle(currTitle);
         updateObject.setMealDescription(currMealDescription);
         updateObject.put("nutrients", nutrients);
         updateObject.put("amounts", amounts);
+
+        if (photoFile != null && binding.ivMealImage.getDrawable() != null) {
+            updateObject.setImage(new ParseFile(photoFile));
+        }
 
         updateObject.saveInBackground(new SaveCallback() {
             @Override
@@ -282,6 +309,7 @@ public class MealDetailsFragment extends Fragment {
                     return;
                 }
                 Log.i(TAG, "Post was successful");
+                binding.ivMealImage.setImageResource(0);
 
                 FragmentManager fragmentManager = getFragmentManager();
                 Fragment fragment = new MealFragment();
@@ -290,7 +318,7 @@ public class MealDetailsFragment extends Fragment {
         });
     }
 
-    private void savePost(String currTitle, String currMealDescription, List<String> nutrients, List<Integer> amounts) {
+    private void savePost(String currTitle, String currMealDescription, List<String> nutrients, List<Integer> amounts, File photoFile) {
         MealJournal mealJournal = new MealJournal();
 
         mealJournal.put("user", user);
@@ -298,6 +326,10 @@ public class MealDetailsFragment extends Fragment {
         mealJournal.setMealDescription(currMealDescription);
         mealJournal.setNutrients(nutrients);
         mealJournal.setAmounts(amounts);
+
+        if (photoFile != null && binding.ivMealImage.getDrawable() != null) {
+            mealJournal.setImage(new ParseFile(photoFile));
+        }
 
         mealJournal.saveInBackground(new SaveCallback() {
             @Override
