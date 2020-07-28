@@ -30,7 +30,6 @@ public class ParseApplication extends Application {
 
         // MUST CALL THIS
         // Register parse models!
-        ParseObject.registerSubclass(WeightReps.class);
         ParseObject.registerSubclass(Workout.class);
         ParseObject.registerSubclass(WorkoutJournal.class);
         ParseObject.registerSubclass(MealJournal.class);

@@ -36,11 +36,8 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Workout workout = workouts.get(position);
-        try {
-            holder.bind(workout);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+
+        holder.bind(workout);
     }
 
     @Override
@@ -57,7 +54,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.ViewHold
             binding = b;
         }
 
-        public void bind(Workout workout) throws ParseException {
+        public void bind(Workout workout) {
             // Bind the workout data to the view elements
             binding.tvDate.setText(workout.getCreatedAt().toString());
             binding.etTitle.setText(workout.getExercises().get(0));

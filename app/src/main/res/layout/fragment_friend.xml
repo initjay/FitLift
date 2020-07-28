@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.FriendFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.FriendFragment"
+    android:fitsSystemWindows="true">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/friends_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/menu_friends_toolbar"
+        android:layout_marginBottom="16dp"
+        android:background="#A3A2A2"
+        app:title="@string/app_name"/>
+
+    <FrameLayout
+        android:id="@+id/child_fragment_friends_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/friends_toolbar"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFriends"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Friend fragment" />
+        android:layout_below="@id/child_fragment_friends_search"/>
 
-</FrameLayout>
+</RelativeLayout>
