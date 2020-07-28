@@ -181,7 +181,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginBottom="8dp"
                         android:ems="5"
                         android:hint="Nutrient"
                         android:inputType="textPersonName" />
@@ -198,28 +198,39 @@
                         android:hint="Amount"
                         android:inputType="number" />
 
-
                 </RelativeLayout>
 
             </HorizontalScrollView>
+
+            <ImageView
+                android:id="@+id/ivMealImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/horizontal_scroll_view"
+                tools:srcCompat="@tools:sample/avatars"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"/>
 
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <ImageView
-        android:id="@+id/ivMealImage"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@id/cvMeal"
-        tools:srcCompat="@tools:sample/avatars"
-        android:visibility="gone"/>
+    <Button
+        android:id="@+id/btnAttachImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cvMeal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Attach Image" />
 
     <Button
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ivMealImage"
+        android:layout_below="@+id/btnAttachImg"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
