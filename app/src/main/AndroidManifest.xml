@@ -15,6 +15,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.codepath.fileprovider.FitLift"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/fileprovider" />
+        </provider>
+
         <activity android:name=".activities.CreateUserActivity"/><!-- 'usesCleartextTraffic allows http traffic to be sent, TODO MAKE MORE SECURE -->
         <!-- make sure within the application tag, otherwise app will crash with XmlResourceParser errors -->
         <activity android:name=".activities.MainActivity"/>

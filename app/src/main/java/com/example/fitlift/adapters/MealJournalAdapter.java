@@ -77,12 +77,6 @@ public class MealJournalAdapter extends RecyclerView.Adapter<MealJournalAdapter.
                 // bundle needed to pass data to other fragments
                 Bundle bundle = new Bundle();
                 bundle.putString("objectId", mealJournal.getObjectId());
-//                bundle.putString("Title", mealJournal.getTitle());
-//                bundle.putString("Date", mealJournal.getCreatedAt().toString());
-//                bundle.putString("Description", mealJournal.getMealDescription());
-//                // TODO: WILL HAVE TO UPDATE TO ARRAY OF EXERCISES, WEIGHTS, AND REPS
-//                bundle.putStringArrayList("Nutrients", (ArrayList<String>) mealJournal.getNutrients());
-//                bundle.putIntegerArrayList("Amounts", (ArrayList<Integer>) mealJournal.getAmounts());
 
                 Fragment fragment = new MealDetailsFragment();
                 // attach bundle to fragment
