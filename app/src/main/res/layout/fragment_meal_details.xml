@@ -181,6 +181,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp"
                         android:ems="5"
                         android:hint="Nutrient"
                         android:inputType="textPersonName" />
@@ -202,20 +203,27 @@
 
             </HorizontalScrollView>
 
-
-            <Button
-                android:id="@+id/btnSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/horizontal_scroll_view"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Save" />
-
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/ivMealImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/cvMeal"
+        tools:srcCompat="@tools:sample/avatars"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivMealImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Save" />
 
 
 </RelativeLayout>

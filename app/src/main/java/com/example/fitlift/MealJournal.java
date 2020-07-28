@@ -1,6 +1,7 @@
 package com.example.fitlift;
 
 import com.parse.ParseClassName;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class MealJournal extends ParseObject {
     public static final String KEY_MEALDESCRIPTION = "mealDescription";
     public static final String KEY_NUTRIENTS = "nutrients";
     public static final String KEY_AMOUNTS = "amounts";
+    public static final String KEY_MEALIMAGE = "mealImage";
     public static final String POINTER_USER = "user";
 
     public String getTitle () {
@@ -45,6 +47,14 @@ public class MealJournal extends ParseObject {
 
     public void setAmounts (List<Integer> amounts) {
         put(KEY_AMOUNTS, amounts);
+    }
+
+    public ParseFile getImage() {
+        return getParseFile(KEY_MEALIMAGE);
+    }
+
+    public void setImage(ParseFile parseFile) {
+        put(KEY_MEALIMAGE, parseFile);
     }
 
 }
