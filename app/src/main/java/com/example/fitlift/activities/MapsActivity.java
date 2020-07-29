@@ -9,16 +9,20 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.fitlift.PermissionUtils;
 import com.example.fitlift.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 public class MapsActivity extends FragmentActivity
         implements OnMapReadyCallback,
@@ -28,7 +32,7 @@ public class MapsActivity extends FragmentActivity
 
     // TODO: ADD API KEY RESTRICTIONS ON DEVELOPER CONSOLE
 
-
+    public static final String TAG = "MapsActivity";
     /**
      * Request code for location permission request.
      *
@@ -41,6 +45,7 @@ public class MapsActivity extends FragmentActivity
      */
     private boolean permissionDenied = false;
     private GoogleMap mMap;
+    private FusedLocationProviderClient fusedLocationClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,8 @@ public class MapsActivity extends FragmentActivity
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        // Needed to get the last known location
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
     }
 
     /**
@@ -63,11 +70,12 @@ public class MapsActivity extends FragmentActivity
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        this.mMap = googleMap;
 
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
         enableMyLocation();
+
         // Add a marker in Sydney and move the camera
 //        LatLng sydney = new LatLng(-34, 151);
 //        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
@@ -82,6 +90,20 @@ public class MapsActivity extends FragmentActivity
                 == PackageManager.PERMISSION_GRANTED) {
             if (mMap != null) {
                 mMap.setMyLocationEnabled(true);
+                // call to get last known location
+                fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // got last known location
+                        LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                        // TODO: ADD ZOOM TO INITIAL LOCATION
+                        if (location != null) {
+                            mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
+                        } else {
+                            Log.e(TAG, "Current location is null in fusedLocationClient");
+                        }
+                    }
+                });
             }
         } else {
             // Permission to access the location is missing. Show rationale and request permission
