@@ -62,13 +62,15 @@
                 android:id="@+id/vertical_scroll_view"
                 android:layout_width="match_parent"
                 android:layout_height="562dp"
-                android:layout_below="@id/divider">
+                android:layout_below="@id/divider"
+                android:fillViewport="true">
 
                 <HorizontalScrollView
                     android:id="@id/horizontal_scroll_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_below="@id/divider">
+                    android:layout_below="@id/divider"
+                    android:fillViewport="true">
 
                     <RelativeLayout
                         android:id="@+id/rl_meal_entry"
@@ -76,13 +78,22 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/divider">
 
+                        <Button
+                            android:id="@+id/btnTrackRun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="8dp"
+                            android:text="Track Run" />
+
                         <EditText
                             android:id="@+id/etExercise1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_below="@id/btnTrackRun"
                             android:layout_alignParentStart="true"
                             android:layout_marginStart="8dp"
-                            android:layout_marginTop="12dp"
+                            android:layout_marginTop="8dp"
                             android:ems="5"
                             android:hint="Exercise"
                             android:inputType="textPersonName" />

@@ -1,5 +1,6 @@
 package com.example.fitlift.fragments;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -18,6 +19,8 @@ import android.widget.Toast;
 import com.example.fitlift.R;
 import com.example.fitlift.Workout;
 import com.example.fitlift.WorkoutJournal;
+import com.example.fitlift.activities.MainActivity;
+import com.example.fitlift.activities.MapsActivity;
 import com.example.fitlift.databinding.FragmentWorkoutDetailsBinding;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -301,6 +304,14 @@ public class WorkoutDetailsFragment extends Fragment {
             LocalDateTime now = LocalDateTime.now();
             binding.tvDate.setText(dtf.format(now));
         }
+
+        binding.btnTrackRun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), MapsActivity.class);
+                startActivity(i);
+            }
+        });
 
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
