@@ -13,6 +13,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    // TODO: ADD API KEY RESTRICTIONS ON DEVELOPER CONSOLE
+
     private GoogleMap mMap;
 
     @Override
