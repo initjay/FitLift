@@ -9,6 +9,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
@@ -34,6 +35,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -68,6 +71,8 @@ public class MapsActivity extends FragmentActivity
     private LocationCallback locationCallback;
     private boolean requestingLocationUpdates = false;
     public static final String REQUESTING_LOCATION_UPDATES_KEY = "requesting-location-updates-key";
+    private static LatLng prev = new LatLng(0,0);
+    private static int flag = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
