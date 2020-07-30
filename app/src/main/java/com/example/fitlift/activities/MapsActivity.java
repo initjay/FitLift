@@ -98,7 +98,7 @@ public class MapsActivity extends FragmentActivity
                 }
             }
         };
-        
+
         updateValuesFromBundle(savedInstanceState);
     }
 
@@ -174,7 +174,7 @@ public class MapsActivity extends FragmentActivity
             }
         });
     }
-    
+
 
     @Override
     protected void onResume() {
