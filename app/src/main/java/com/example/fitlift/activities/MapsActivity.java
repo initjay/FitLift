@@ -22,6 +22,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -76,6 +77,10 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
     private long FASTEST_INTERVAL = 1000;
     Location prevLocation;
 
+    private Button btnBeginRun;
+    private Boolean beginRun = false;
+    private Button btnEndRun;
+
     private final static String KEY_LOCATION = "location";
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
@@ -102,6 +107,23 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
         } else {
             Toast.makeText(this, "Error - Map Fragment was null!!", Toast.LENGTH_SHORT).show();
         }
+
+        btnBeginRun = findViewById(R.id.btnBeginRun);
+        btnEndRun = findViewById(R.id.btnEndRun);
+
+        btnBeginRun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                beginRun = true;
+            }
+        });
+
+        btnEndRun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                beginRun = false;
+            }
+        });
     }
 
     protected void loadMap(GoogleMap googleMap) {
@@ -250,12 +272,12 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
         // Report to the UI that the location was updated
 
         mCurrentLocation = location;
-        String msg = "Updated Location: " +
-                Double.toString(location.getLatitude()) + "," +
-                Double.toString(location.getLongitude());
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+//        String msg = "Updated Location: " +
+//                Double.toString(location.getLatitude()) + "," +
+//                Double.toString(location.getLongitude());
+//        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 
-        if (prevLocation != null) {
+        if (prevLocation != null && beginRun) {
             Polyline polyline = map.addPolyline(new PolylineOptions()
                     .add(new LatLng(prevLocation.getLatitude(),prevLocation.getLongitude()),
                             new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude())));
