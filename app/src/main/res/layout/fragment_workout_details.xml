@@ -100,20 +100,24 @@
                             android:visibility="gone"
                             android:weightSum="2">
 
-                            <EditText
+                            <TextView
                                 android:id="@+id/etMilesRan"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
                                 android:layout_weight="1"
                                 android:hint="Miles Ran"
+                                android:textSize="18sp"
                                 android:visibility="visible" />
 
-                            <EditText
+                            <TextView
                                 android:id="@+id/etTimeElapsed"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
                                 android:layout_weight="1"
                                 android:hint="Time"
+                                android:textSize="18sp"
                                 android:visibility="visible" />
 
                         </LinearLayout>

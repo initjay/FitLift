@@ -115,6 +115,15 @@ public class WorkoutDetailsFragment extends Fragment {
 
                     List<List<Integer>> weightReps = object.getWeightReps();
 
+                    String time = object.getTime();
+                    String miles = object.getMiles();
+
+                    if (time != null && miles != null) {
+                        binding.linearLayoutRun.setVisibility(View.VISIBLE);
+                        binding.etTimeElapsed.setText(time);
+                        binding.etMilesRan.setText(miles);
+                    }
+
                     if (object.getExercises().size() > 0) {
                         binding.etExercise1.setText(object.getExercises().get(0));
 
@@ -334,6 +343,17 @@ public class WorkoutDetailsFragment extends Fragment {
                 List<List<Integer>> newWeightReps = new ArrayList<>();
 
                 List<Integer> newReps1 = new ArrayList<>();
+
+                String newTime = null;
+                String newMiles = null;
+
+                if(!binding.etTimeElapsed.getText().toString().isEmpty()) {
+                    newTime = binding.etTimeElapsed.getText().toString();
+                }
+
+                if(!binding.etMilesRan.getText().toString().isEmpty()) {
+                    newMiles = binding.etMilesRan.getText().toString();
+                }
 
                 if (!binding.etExercise1.getText().toString().isEmpty()) {
                     newExercises.add(binding.etExercise1.getText().toString());
@@ -580,9 +600,9 @@ public class WorkoutDetailsFragment extends Fragment {
                 newWeightReps.add(newReps12);
 
                 if (workoutUpdate) {
-                    saveWorkoutUpdate(title, newExercises, newWeightReps, updateWorkout, updateJournal);
+                    saveWorkoutUpdate(title, newExercises, newWeightReps, updateWorkout, updateJournal, newMiles, newTime);
                 } else {
-                    saveWorkout(title, newExercises,newWeightReps);
+                    saveWorkout(title, newExercises,newWeightReps, newMiles, newTime);
                 }
 
             }
@@ -604,12 +624,17 @@ public class WorkoutDetailsFragment extends Fragment {
         }
     }
 
-    private void saveWorkout(String title, List<String> newExercises, List<List<Integer>> newWeightReps) {
+    private void saveWorkout(String title, List<String> newExercises, List<List<Integer>> newWeightReps, String newMiles, String newTime) {
         WorkoutJournal workoutJournal = new WorkoutJournal();
         Workout workout = new Workout();
 
         String newWorkoutId;
         String newWorkoutJournalId;
+
+        if (newMiles != null && newTime != null) {
+            workout.setMiles(newMiles);
+            workout.setTime(newTime);
+        }
 
         workout.setExercises(newExercises);
         workout.setWeightReps(newWeightReps);
@@ -648,7 +673,7 @@ public class WorkoutDetailsFragment extends Fragment {
 
     }
 
-    private void saveWorkoutUpdate(String title, List<String> newExercises, List<List<Integer>> newWeightReps, Workout updateWorkout, WorkoutJournal updateJournal) {
+    private void saveWorkoutUpdate(String title, List<String> newExercises, List<List<Integer>> newWeightReps, Workout updateWorkout, WorkoutJournal updateJournal, String newMiles, String newTime) {
         updateJournal.setTitle(title);
 
         updateJournal.saveInBackground(new SaveCallback() {
@@ -665,6 +690,11 @@ public class WorkoutDetailsFragment extends Fragment {
 
         updateWorkout.setExercises(newExercises);
         updateWorkout.setWeightReps(newWeightReps);
+
+        if (newMiles != null && newTime != null) {
+            updateWorkout.setMiles(newMiles);
+            updateWorkout.setTime(newTime);
+        }
 
         updateWorkout.saveInBackground(new SaveCallback() {
             @Override
