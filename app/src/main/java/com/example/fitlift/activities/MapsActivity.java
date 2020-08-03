@@ -12,6 +12,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -152,6 +153,19 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
                 beginRun = false;
                 // remove handler so there are no duplicate processes
                 handler.removeMessages(0);
+            }
+        });
+
+        btnFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent data = new Intent();
+                // pass time elapsed and distance data back to workoutJournal
+                data.putExtra("timeElapsed", tvTimeElapsed.getText().toString());
+                data.putExtra("distance", tvMilesRan.getText().toString());
+                setResult(RESULT_OK, data);
+                // close activity and return to workoutJournal
+                finish();
             }
         });
     }

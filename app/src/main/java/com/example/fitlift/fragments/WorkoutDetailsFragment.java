@@ -33,6 +33,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.app.Activity.RESULT_OK;
+
 // TODO fix back button to go back to workoutFragment
 
 public class WorkoutDetailsFragment extends Fragment {
@@ -586,6 +588,18 @@ public class WorkoutDetailsFragment extends Fragment {
             }
         });
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+            // Extract data from result extras
+
+
+//            String name = data.getExtras().getString("name");
+//            int code = data.getExtras().getInt("code", 0);
+            // Toast the name to display temporarily on screen
+        }
     }
 
     private void saveWorkout(String title, List<String> newExercises, List<List<Integer>> newWeightReps) {
