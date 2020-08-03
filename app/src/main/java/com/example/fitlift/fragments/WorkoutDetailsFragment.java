@@ -594,11 +594,13 @@ public class WorkoutDetailsFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
             // Extract data from result extras
+            String time = data.getExtras().getString("timeElapsed");
+            String distance = data.getExtras().getString("distance");
 
+            binding.linearLayoutRun.setVisibility(View.VISIBLE);
+            binding.etMilesRan.setText(distance);
+            binding.etTimeElapsed.setText(time);
 
-//            String name = data.getExtras().getString("name");
-//            int code = data.getExtras().getInt("code", 0);
-            // Toast the name to display temporarily on screen
         }
     }
 
