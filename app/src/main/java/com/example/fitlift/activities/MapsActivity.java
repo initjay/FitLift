@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fitlift.PermissionUtils;
@@ -60,6 +61,11 @@ import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
 import com.google.android.gms.tasks.Task;
 
+import org.w3c.dom.Text;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
 @RuntimePermissions
@@ -76,18 +82,31 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
     private long UPDATE_INTERVAL = 5000;
     private long FASTEST_INTERVAL = 1000;
     Location prevLocation;
+    // distance traveled
+    private double distance = 0;
 
     private Button btnBeginRun;
     private Boolean beginRun = false;
     private Button btnEndRun;
+    private TextView tvMilesRan;
 
     private final static String KEY_LOCATION = "location";
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
+
+    private Timer runTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        runTimer = new Timer();
+        runTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                TimerMethod();
+            }
+        }, 0, 1000);
 
         if (savedInstanceState != null && savedInstanceState.keySet().contains(KEY_LOCATION)) {
             // Since KEY_LOCATION was found in the Bundle, we can be sure that mCurrentLocation
@@ -110,6 +129,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
 
         btnBeginRun = findViewById(R.id.btnBeginRun);
         btnEndRun = findViewById(R.id.btnEndRun);
+        tvMilesRan = findViewById(R.id.tvMilesRan);
 
         btnBeginRun.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +145,25 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
             }
         });
     }
+
+    private void TimerMethod() {
+        //This method is called directly by the timer
+        //and runs in the same thread as the timer.
+
+        //We call the method that will work with the UI
+        //through the runOnUiThread method.
+        this.runOnUiThread(Timer_Tick);
+    }
+
+    private Runnable Timer_Tick = new Runnable() {
+        public void run() {
+
+            //This method runs in the same thread as the UI.
+
+            //Do something to the UI thread here
+
+        }
+    };
 
     protected void loadMap(GoogleMap googleMap) {
         map = googleMap;
@@ -281,9 +320,47 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
             Polyline polyline = map.addPolyline(new PolylineOptions()
                     .add(new LatLng(prevLocation.getLatitude(),prevLocation.getLongitude()),
                             new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude())));
+
+            distance += distance(prevLocation.getLatitude(), mCurrentLocation.getLatitude(),
+                    prevLocation.getLongitude(), mCurrentLocation.getLongitude());
+
+            // round distance to 3 decimal places
+            String distString = String.format("%.3f", distance);
+
+            tvMilesRan.setText(distString + " mi");
         }
 
         prevLocation = mCurrentLocation;
+    }
+
+    private double distance(double lat1,
+                            double lat2, double lon1,
+             double lon2)
+    {
+
+        // The math module contains a function
+        // named toRadians which converts from
+        // degrees to radians.
+        lon1 = Math.toRadians(lon1);
+        lon2 = Math.toRadians(lon2);
+        lat1 = Math.toRadians(lat1);
+        lat2 = Math.toRadians(lat2);
+
+        // Haversine formula
+        double dlon = lon2 - lon1;
+        double dlat = lat2 - lat1;
+        double a = Math.pow(Math.sin(dlat / 2), 2)
+                + Math.cos(lat1) * Math.cos(lat2)
+                * Math.pow(Math.sin(dlon / 2),2);
+
+        double c = 2 * Math.asin(Math.sqrt(a));
+
+        // Radius of earth in kilometers or miles. Use 3956
+        // for miles or 6371 for kilometers.
+        double r = 3956;
+
+        // calculate the result
+        return(c * r);
     }
 
     public void onSaveInstanceState(Bundle savedInstanceState) {
