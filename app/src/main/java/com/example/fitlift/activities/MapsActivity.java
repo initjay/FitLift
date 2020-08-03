@@ -15,7 +15,9 @@ import android.content.DialogInterface;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -161,6 +163,16 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
             map.setOnMapLongClickListener(this);
             MapsActivityPermissionsDispatcher.getMyLocationWithPermissionCheck(this);
             MapsActivityPermissionsDispatcher.startLocationUpdatesWithPermissionCheck(this);
+
+            LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+            String provider = service.getBestProvider(criteria, false);
+            @SuppressLint("MissingPermission") Location location = service.getLastKnownLocation(provider);
+            LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
+
+//            Location location = map.getMyLocation();
+//            LatLng currLocation = new LatLng(location.getLatitude(), location.getLongitude());
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 18));
         } else {
             Toast.makeText(this, "Error - Map was null!!", Toast.LENGTH_SHORT).show();
         }
