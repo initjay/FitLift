@@ -44,6 +44,7 @@ public class WorkoutDetailsFragment extends Fragment {
     private boolean workoutUpdate = false;
     private Workout updateWorkout;
     private WorkoutJournal updateJournal;
+    private final int REQUEST_CODE = 33;
     //private List<EditText> views;
 
     public WorkoutDetailsFragment() {
@@ -309,7 +310,7 @@ public class WorkoutDetailsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getActivity(), MapsActivity.class);
-                startActivity(i);
+                startActivityForResult(i, REQUEST_CODE);
             }
         });
 

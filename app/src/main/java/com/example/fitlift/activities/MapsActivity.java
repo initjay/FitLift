@@ -96,6 +96,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
     private Button btnBeginRun;
     private Boolean beginRun = false;
     private Button btnEndRun;
+    private Button btnFinish;
     private TextView tvMilesRan;
     private TextView tvTimeElapsed;
 
@@ -132,6 +133,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
 
         btnBeginRun = findViewById(R.id.btnBeginRun);
         btnEndRun = findViewById(R.id.btnEndRun);
+        btnFinish = findViewById(R.id.btnFinish);
         tvMilesRan = findViewById(R.id.tvMilesRan);
         tvTimeElapsed = findViewById(R.id.tvTimeElapsed);
 
