@@ -17,6 +17,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
@@ -63,10 +64,13 @@ import com.google.android.gms.tasks.Task;
 
 import org.w3c.dom.Text;
 
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
+
+// TODO: add ability to reset route tracking, distance traveled, and time elapsed
 
 @RuntimePermissions
 public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLongClickListener {
@@ -84,29 +88,26 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
     Location prevLocation;
     // distance traveled
     private double distance = 0;
+    // elapsed time
+    private int seconds = 0;
 
     private Button btnBeginRun;
     private Boolean beginRun = false;
     private Button btnEndRun;
     private TextView tvMilesRan;
+    private TextView tvTimeElapsed;
+
+    // time elapsed handler
+    private final Handler handler = new Handler();
 
     private final static String KEY_LOCATION = "location";
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
-    private Timer runTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
-        runTimer = new Timer();
-        runTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                TimerMethod();
-            }
-        }, 0, 1000);
 
         if (savedInstanceState != null && savedInstanceState.keySet().contains(KEY_LOCATION)) {
             // Since KEY_LOCATION was found in the Bundle, we can be sure that mCurrentLocation
@@ -130,11 +131,14 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
         btnBeginRun = findViewById(R.id.btnBeginRun);
         btnEndRun = findViewById(R.id.btnEndRun);
         tvMilesRan = findViewById(R.id.tvMilesRan);
+        tvTimeElapsed = findViewById(R.id.tvTimeElapsed);
 
         btnBeginRun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 beginRun = true;
+                // timer function, runs if tracking is begun
+                runTimer();
             }
         });
 
@@ -145,25 +149,6 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
             }
         });
     }
-
-    private void TimerMethod() {
-        //This method is called directly by the timer
-        //and runs in the same thread as the timer.
-
-        //We call the method that will work with the UI
-        //through the runOnUiThread method.
-        this.runOnUiThread(Timer_Tick);
-    }
-
-    private Runnable Timer_Tick = new Runnable() {
-        public void run() {
-
-            //This method runs in the same thread as the UI.
-
-            //Do something to the UI thread here
-
-        }
-    };
 
     protected void loadMap(GoogleMap googleMap) {
         map = googleMap;
@@ -321,6 +306,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
                     .add(new LatLng(prevLocation.getLatitude(),prevLocation.getLongitude()),
                             new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude())));
 
+            // calculate and display distance traveled
             distance += distance(prevLocation.getLatitude(), mCurrentLocation.getLatitude(),
                     prevLocation.getLongitude(), mCurrentLocation.getLongitude());
 
@@ -331,6 +317,39 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
         }
 
         prevLocation = mCurrentLocation;
+    }
+
+    private void runTimer() {
+
+        if (beginRun) {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    int hours = seconds / 3600;
+                    int minutes = (seconds % 3600) / 60;
+                    int secs = seconds % 60;
+
+                    // Format the seconds into hours, minutes,
+                    // and seconds.
+                    String time
+                            = String
+                            .format(Locale.getDefault(),
+                                    "%d:%02d:%02d", hours,
+                                    minutes, secs);
+
+                    // Set the text view text.
+                    tvTimeElapsed.setText(time);
+
+                    if (beginRun){
+                        seconds++;
+                    }
+
+                    // Post the code again
+                    // with a delay of 1 second.
+                    handler.postDelayed(this, 1000);
+                }
+            });
+        }
     }
 
     private double distance(double lat1,
