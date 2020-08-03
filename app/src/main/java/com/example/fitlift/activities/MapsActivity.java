@@ -315,6 +315,11 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
 //                Double.toString(location.getLongitude());
 //        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 
+        LatLng latlong = new LatLng(location.getLatitude(),
+                location.getLongitude());
+
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latlong, 18));
+
         if (prevLocation != null && beginRun) {
             Polyline polyline = map.addPolyline(new PolylineOptions()
                     .add(new LatLng(prevLocation.getLatitude(),prevLocation.getLongitude()),
