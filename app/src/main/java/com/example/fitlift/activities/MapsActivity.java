@@ -97,11 +97,11 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
     private TextView tvMilesRan;
     private TextView tvTimeElapsed;
 
-    // time elapsed handler
-    private final Handler handler = new Handler();
-
     private final static String KEY_LOCATION = "location";
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
+
+    // time elapsed handler
+    private final Handler handler = new Handler();
 
 
     @Override
@@ -146,6 +146,8 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
             @Override
             public void onClick(View view) {
                 beginRun = false;
+                // remove handler so there are no duplicate processes
+                handler.removeMessages(0);
             }
         });
     }
