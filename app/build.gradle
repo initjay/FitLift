@@ -31,6 +31,8 @@ android {
 }
 
 ext {
+    permissionDispatcherVersion = "4.7.0"
+    supportLibVersion = "1.0.0"
     googlePlayVersion = "17.0.0"
 }
 
@@ -56,4 +58,7 @@ dependencies {
     // Google maps
     implementation "com.google.android.gms:play-services-maps:$googlePlayVersion"
     implementation "com.google.android.gms:play-services-location:$googlePlayVersion"
+
+    implementation "org.permissionsdispatcher:permissionsdispatcher:$permissionDispatcherVersion"
+    annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:$permissionDispatcherVersion"
 }
