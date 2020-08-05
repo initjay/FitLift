@@ -4,12 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.fitlift.OnSwipeTouchListener;
 import com.example.fitlift.R;
@@ -20,7 +20,6 @@ import com.example.fitlift.fragments.MealFragment;
 import com.example.fitlift.fragments.WorkoutDetailsFragment;
 import com.example.fitlift.fragments.WorkoutFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -104,12 +103,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToDetails() {
         Fragment fragment = new WorkoutDetailsFragment();
-        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+
+        FragmentTransaction fts = getSupportFragmentManager().beginTransaction();
+        fts.setCustomAnimations(R.anim.slide_in_top, R.anim.slide_out_bottom);
+        fts.replace(R.id.flContainer, fragment).commit();
     }
 
-    public void goToMenuDetails() {
+    public void goToMealDetails() {
         Fragment fragment = new MealDetailsFragment();
-        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+
+        FragmentTransaction fts = getSupportFragmentManager().beginTransaction();
+        fts.setCustomAnimations(R.anim.slide_in_top, R.anim.slide_out_bottom);
+        fts.replace(R.id.flContainer, fragment).commit();
     }
 
     public void goToFriends() {

@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fitlift.R;
@@ -67,7 +68,7 @@ public class WorkoutJournalAdapter extends RecyclerView.Adapter<WorkoutJournalAd
         @Override
         public void onClick(View view) {
             // must cast context to FragmentActivity to call getSupportFragmentManager
-            FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
+            FragmentTransaction fts = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
             //Toast.makeText(context, "You clicked", Toast.LENGTH_SHORT).show();
             int position = getAdapterPosition();
             // make sure the position is valid - exists in the view
@@ -83,10 +84,12 @@ public class WorkoutJournalAdapter extends RecyclerView.Adapter<WorkoutJournalAd
 //                // TODO: WILL HAVE TO UPDATE TO ARRAY OF EXERCISES, WEIGHTS, AND REPS
 
                 Fragment fragment = new WorkoutDetailsFragment();
+
+                fts.setCustomAnimations(R.anim.slide_in_top, R.anim.slide_out_bottom);
                 // attach bundle to fragment
                 fragment.setArguments(bundle);
                 // navigate to new fragment
-                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+                fts.replace(R.id.flContainer, fragment).commit();
             }
         }
     }
