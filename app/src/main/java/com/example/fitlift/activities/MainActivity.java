@@ -24,13 +24,15 @@ import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
 
+    ActivityMainBinding binding;
+
     final FragmentManager fragmentManager = getSupportFragmentManager();
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
@@ -64,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         view.setOnTouchListener(new OnSwipeTouchListener(this) {
-            Fragment fragment;
             Fragment currFragment;
 
             @Override
@@ -109,5 +110,17 @@ public class MainActivity extends AppCompatActivity {
     public void goToMenuDetails() {
         Fragment fragment = new MealDetailsFragment();
         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+    }
+
+    public void goToFriends() {
+        binding.bottomNavigation.setSelectedItemId(R.id.action_friends);
+    }
+
+    public void goToWorkout() {
+        binding.bottomNavigation.setSelectedItemId(R.id.action_workout);
+    }
+
+    public void goToMeals() {
+        binding.bottomNavigation.setSelectedItemId(R.id.action_meals);
     }
 }

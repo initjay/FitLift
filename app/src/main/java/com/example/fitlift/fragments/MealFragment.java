@@ -1,5 +1,6 @@
 package com.example.fitlift.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -22,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.fitlift.MealJournal;
+import com.example.fitlift.OnSwipeTouchListener;
 import com.example.fitlift.R;
 import com.example.fitlift.activities.LoginActivity;
 import com.example.fitlift.activities.MainActivity;
@@ -62,6 +64,7 @@ public class MealFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_meal, container, false);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -101,6 +104,22 @@ public class MealFragment extends Fragment {
 
         rvMealFragments.setLayoutManager(new LinearLayoutManager(getContext()));
         queryMeals();
+
+        rvMealFragments.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
+
+            @Override
+            public void onSwipeDown() {
+            }
+
+            @Override
+            public void onSwipeUp() {
+            }
+
+            @Override
+            public void onSwipeRight() {
+                activity.goToWorkout();
+            }
+        });
     }
 
     private void queryMeals() {

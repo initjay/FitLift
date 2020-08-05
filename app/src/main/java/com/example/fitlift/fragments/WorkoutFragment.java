@@ -1,5 +1,6 @@
 package com.example.fitlift.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -19,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.fitlift.OnSwipeTouchListener;
 import com.example.fitlift.R;
 import com.example.fitlift.WorkoutJournal;
 import com.example.fitlift.activities.LoginActivity;
@@ -65,6 +67,7 @@ public class WorkoutFragment extends Fragment {
     }
 
     // TODO add viewbinding library implementation
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -107,6 +110,28 @@ public class WorkoutFragment extends Fragment {
 
         rvWorkouts.setLayoutManager(new LinearLayoutManager(getContext()));
         queryWorkouts();
+
+        // TODO: Fix swipelistener to detect swipe anywhere on screen
+        rvWorkouts.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
+
+            @Override
+            public void onSwipeDown() {
+            }
+
+            @Override
+            public void onSwipeLeft() {
+                activity.goToMeals();
+            }
+
+            @Override
+            public void onSwipeUp() {
+            }
+
+            @Override
+            public void onSwipeRight() {
+                activity.goToFriends();
+            }
+        });
     }
 
     // Todo: store query responses locally as well for quicker access, wipe local storage when user signs out?
