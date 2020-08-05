@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -104,12 +105,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToDetails() {
         Fragment fragment = new WorkoutDetailsFragment();
-        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+
+        FragmentTransaction fts = getSupportFragmentManager().beginTransaction();
+        fts.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+        fts.replace(R.id.flContainer, fragment).commit();
     }
 
-    public void goToMenuDetails() {
+    public void goToMealDetails() {
         Fragment fragment = new MealDetailsFragment();
-        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+
+        FragmentTransaction fts = getSupportFragmentManager().beginTransaction();
+        fts.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+        fts.replace(R.id.flContainer, fragment).commit();
     }
 
     public void goToFriends() {

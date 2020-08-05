@@ -79,7 +79,7 @@ public class MealFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.action_add_workout:
-                        activity.goToMenuDetails();
+                        activity.goToMealDetails();
                         break;
                     case R.id.action_logout:
                     default:
