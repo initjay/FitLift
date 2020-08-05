@@ -10,7 +10,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.fitlift.OnSwipeTouchListener;
 import com.example.fitlift.R;
@@ -21,7 +20,6 @@ import com.example.fitlift.fragments.MealFragment;
 import com.example.fitlift.fragments.WorkoutDetailsFragment;
 import com.example.fitlift.fragments.WorkoutFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -107,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = new WorkoutDetailsFragment();
 
         FragmentTransaction fts = getSupportFragmentManager().beginTransaction();
-        fts.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+        fts.setCustomAnimations(R.anim.slide_in_top, R.anim.slide_out_bottom);
         fts.replace(R.id.flContainer, fragment).commit();
     }
 
@@ -115,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = new MealDetailsFragment();
 
         FragmentTransaction fts = getSupportFragmentManager().beginTransaction();
-        fts.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+        fts.setCustomAnimations(R.anim.slide_in_top, R.anim.slide_out_bottom);
         fts.replace(R.id.flContainer, fragment).commit();
     }
 
