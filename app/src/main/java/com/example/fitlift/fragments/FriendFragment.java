@@ -1,5 +1,6 @@
 package com.example.fitlift.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.fitlift.OnSwipeTouchListener;
 import com.example.fitlift.R;
 import com.example.fitlift.WorkoutJournal;
 import com.example.fitlift.activities.MainActivity;
@@ -71,6 +73,7 @@ public class FriendFragment extends Fragment {
         return binding.getRoot();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -86,6 +89,23 @@ public class FriendFragment extends Fragment {
         rvFriends.setAdapter(adapter);
         rvFriends.setLayoutManager(new LinearLayoutManager(getContext()));
         queryFriends();
+
+        rvFriends.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
+
+            @Override
+            public void onSwipeDown() {
+            }
+
+            @Override
+            public void onSwipeLeft() {
+                activity.goToWorkout();
+            }
+
+            @Override
+            public void onSwipeUp() {
+            }
+
+        });
 
     }
 

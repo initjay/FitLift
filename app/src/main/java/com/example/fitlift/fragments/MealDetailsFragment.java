@@ -25,7 +25,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.fitlift.MealJournal;
+import com.example.fitlift.OnSwipeTouchListener;
 import com.example.fitlift.R;
+import com.example.fitlift.activities.MainActivity;
 import com.example.fitlift.databinding.FragmentMealDetailsBinding;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -53,6 +55,7 @@ public class MealDetailsFragment extends Fragment {
     private MealJournal updateObject;
     private File photoFile;
     public String photoFileName = "photo.jpg";
+    private MainActivity activity;
 
     public MealDetailsFragment() {
         // Required empty public constructor
@@ -62,7 +65,7 @@ public class MealDetailsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        activity = (MainActivity) getActivity();
     }
 
     @Override
@@ -82,6 +85,22 @@ public class MealDetailsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         final Bundle bundle = getArguments();
+
+        view.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
+
+            @Override
+            public void onSwipeDown() {
+            }
+
+            @Override
+            public void onSwipeUp() {
+            }
+
+            @Override
+            public void onSwipeRight() {
+                activity.goToWorkout();
+            }
+        });
 
         if (bundle != null) {
 

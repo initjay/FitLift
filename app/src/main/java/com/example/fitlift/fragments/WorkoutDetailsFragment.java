@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.fitlift.OnSwipeTouchListener;
 import com.example.fitlift.R;
 import com.example.fitlift.Workout;
 import com.example.fitlift.WorkoutJournal;
@@ -47,6 +48,7 @@ public class WorkoutDetailsFragment extends Fragment {
     private Workout updateWorkout;
     private WorkoutJournal updateJournal;
     private final int REQUEST_CODE = 33;
+    private MainActivity activity;
     //private List<EditText> views;
 
     public WorkoutDetailsFragment() {
@@ -56,7 +58,7 @@ public class WorkoutDetailsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        activity = (MainActivity) getActivity();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -77,6 +79,27 @@ public class WorkoutDetailsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Bundle bundle = getArguments();
+
+        view.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
+
+            @Override
+            public void onSwipeDown() {
+            }
+
+            @Override
+            public void onSwipeLeft() {
+                activity.goToMeals();
+            }
+
+            @Override
+            public void onSwipeUp() {
+            }
+
+            @Override
+            public void onSwipeRight() {
+                activity.goToFriends();
+            }
+        });
 
         // Add all edit texts here
         //views = Arrays.asList(binding.etExercise1);
