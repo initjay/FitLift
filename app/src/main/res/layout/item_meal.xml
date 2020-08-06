@@ -11,7 +11,10 @@
         android:id="@+id/cvMeal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="8dp"
+        app:cardBackgroundColor="#B3365874"
         app:cardCornerRadius="8dp">
 
         <RelativeLayout
@@ -23,7 +26,11 @@
                 android:id="@+id/etTitleMealFragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/aldrich"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textStyle="bold"
@@ -37,6 +44,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@+id/etTitleMealFragment"
+                android:fontFamily="@font/aldrich"
                 android:text="TextView"
                 tools:text="Date" />
 
