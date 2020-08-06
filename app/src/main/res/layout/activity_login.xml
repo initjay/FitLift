@@ -90,10 +90,13 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="130dp"
+        android:fontFamily="@font/yesteryear"
+        android:shadowColor="#220744"
+        android:shadowRadius="10.0"
         android:text="FitLift"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#BFAECF"
-        android:textSize="40sp"
+        android:textSize="60dp"
         tools:layout_centerHorizontal="true" />
 
 </RelativeLayout>
