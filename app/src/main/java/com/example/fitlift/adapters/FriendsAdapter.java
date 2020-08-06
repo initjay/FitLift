@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.fitlift.WorkoutJournal;
 import com.example.fitlift.databinding.ItemFriendBinding;
-import com.example.fitlift.databinding.ItemWorkoutBinding;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 

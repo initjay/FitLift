@@ -12,8 +12,8 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="#A3A2A2"
+        android:layout_marginBottom="0dp"
+        android:background="#0D1218"
         app:contentInsetStart="0dp"
         app:menu="@menu/menu_toolbar">
 
@@ -38,18 +38,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_centerHorizontal="false"
-                android:text="TextView" />
+                android:fontFamily="@font/aldrich"
+                android:text="TextView"
+                android:textColor="#FFFFFF" />
 
         </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvWorkouts"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvWorkouts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:background="#1B2331" />
 
 </RelativeLayout>
