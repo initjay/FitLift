@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#1B2331"
     tools:context=".fragments.WorkoutDetailsFragment">
 
     <androidx.cardview.widget.CardView
@@ -16,12 +16,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        app:cardBackgroundColor="#B3365874"
         app:cardCornerRadius="8dp">
 
         <RelativeLayout
             android:id="@+id/rvCards"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#B3365874">
 
             <EditText
                 android:id="@+id/etTitle"
@@ -84,7 +86,13 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="8dp"
-                            android:text="Track Run" />
+                            android:background="@drawable/createaccountbuttonshape"
+                            android:shadowColor="#D79B3B"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="10"
+                            android:text="Track Run"
+                            android:textColor="#EBD23F" />
 
                         <LinearLayout
                             android:id="@+id/linearLayoutRun"
@@ -121,7 +129,6 @@
                                 android:visibility="visible" />
 
                         </LinearLayout>
-
 
 
                         <EditText
@@ -862,7 +869,13 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="8dp"
-        android:text="Save" />
+        android:background="@drawable/createaccountbuttonshape"
+        android:shadowColor="#D79B3B"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="10"
+        android:text="Save"
+        android:textColor="#EBD23F" />
 
 
 </RelativeLayout>
