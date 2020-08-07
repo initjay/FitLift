@@ -80,6 +80,8 @@ public class FriendFragment extends Fragment {
 
         Toolbar toolbar = binding.friendsToolbar;
         activity.setSupportActionBar(toolbar);
+        // needed to get rid of default title
+        activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         rvFriends = binding.rvFriends;
 
