@@ -38,9 +38,11 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -119,11 +121,12 @@ public class MealDetailsFragment extends Fragment {
                     updateObject = object;
 
                     String title = object.getTitle();
-                    String date = object.getCreatedAt().toString();
                     String description = object.getMealDescription();
                     List<String> nutrients = object.getNutrients();
                     List<Integer> amounts = object.getAmounts();
                     ParseFile mealImage = object.getImage();
+
+                    String date = new SimpleDateFormat("EEE, MMM d").format(object.getCreatedAt());
 
                     binding.etTitleMealDetails.setText(title);
                     binding.tvDateMealDetails.setText(date);
@@ -174,9 +177,10 @@ public class MealDetailsFragment extends Fragment {
             });
 
         } else {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-            LocalDateTime now = LocalDateTime.now();
-            binding.tvDateMealDetails.setText(dtf.format(now));
+            Date now = new Date();
+            String date = new SimpleDateFormat("EEE, MMM d").format(now);
+
+            binding.tvDateMealDetails.setText(date);
         }
         // listener to launch camera
         binding.btnAttachImg.setOnClickListener(new View.OnClickListener(){

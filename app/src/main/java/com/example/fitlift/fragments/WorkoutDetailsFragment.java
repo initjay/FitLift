@@ -29,9 +29,11 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -121,8 +123,10 @@ public class WorkoutDetailsFragment extends Fragment {
 
                     updateJournal = object;
 
+                    String date = new SimpleDateFormat("EEE, MMM d").format(object.getCreatedAt());
+
                     binding.etTitle.setText(object.getTitle());
-                    binding.tvDate.setText(object.getCreatedAt().toString());
+                    binding.tvDate.setText(date);
                 }
             });
 
@@ -335,9 +339,10 @@ public class WorkoutDetailsFragment extends Fragment {
             });
 
         } else { // New workout entry pre-populate with date
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-            LocalDateTime now = LocalDateTime.now();
-            binding.tvDate.setText(dtf.format(now));
+            Date now = new Date();
+            String date = new SimpleDateFormat("EEE, MMM d").format(now);
+
+            binding.tvDate.setText(date);
         }
 
         binding.btnTrackRun.setOnClickListener(new View.OnClickListener() {
