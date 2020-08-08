@@ -14,6 +14,7 @@ import com.example.fitlift.databinding.ItemFriendBinding;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHolder> {
@@ -60,7 +61,10 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
         }
 
         public void bind(WorkoutJournal workoutJournal) throws ParseException {
-            binding.tvFriendDate.setText(workoutJournal.getCreatedAt().toString());
+
+            String date = new SimpleDateFormat("EEE, MMM d").format(workoutJournal.getCreatedAt());
+
+            binding.tvFriendDate.setText(date);
             binding.tvFriendTitle.setText(workoutJournal.getTitle());
             binding.tvFriendUsername.setText(workoutJournal.getUser().fetchIfNeeded().getUsername());
 

@@ -18,6 +18,8 @@ import com.example.fitlift.WorkoutJournal;
 import com.example.fitlift.databinding.ItemWorkoutJournalBinding;
 import com.example.fitlift.fragments.WorkoutDetailsFragment;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class WorkoutJournalAdapter extends RecyclerView.Adapter<WorkoutJournalAdapter.ViewHolder> {
@@ -61,8 +63,11 @@ public class WorkoutJournalAdapter extends RecyclerView.Adapter<WorkoutJournalAd
 
         public void bind(WorkoutJournal workoutJournal) {
             // bind the workout data to the view elements
+            // EEE, MMM d, yy pattern to add year
+            String date = new SimpleDateFormat("EEE, MMM d").format(workoutJournal.getCreatedAt());
+
             binding.etTitle.setText(workoutJournal.getTitle());
-            binding.tvDate.setText(workoutJournal.getCreatedAt().toString());
+            binding.tvDate.setText(date);
         }
 
         @Override

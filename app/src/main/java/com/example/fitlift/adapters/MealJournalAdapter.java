@@ -20,6 +20,7 @@ import com.example.fitlift.databinding.ItemMealBinding;
 import com.example.fitlift.fragments.MealDetailsFragment;
 import com.example.fitlift.fragments.WorkoutDetailsFragment;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,8 +63,11 @@ public class MealJournalAdapter extends RecyclerView.Adapter<MealJournalAdapter.
         }
 
         public void bind(MealJournal mealJournal) {
+
+            String date = new SimpleDateFormat("EEE, MMM d").format(mealJournal.getCreatedAt());
+
             binding.etTitleMealFragment.setText(mealJournal.getTitle());
-            binding.tvDateMealFragment.setText(mealJournal.getCreatedAt().toString());
+            binding.tvDateMealFragment.setText(date);
         }
 
         @Override
