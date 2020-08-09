@@ -48,10 +48,11 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvTimeElapsed"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="12dp"
         android:layout_alignParentLeft="true"
-        android:text="Start Run"/>
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="4dp"
+        android:background="#B3365874"
+        android:text="Start Run" />
 
     <Button
         android:id="@+id/btnEndRun"
@@ -61,6 +62,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="4dp"
+        android:background="#B3365874"
         android:text="End Run" />
 
     <Button
@@ -70,6 +72,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
+        android:background="#B3365874"
         android:text="Finish" />
 
 </RelativeLayout>
