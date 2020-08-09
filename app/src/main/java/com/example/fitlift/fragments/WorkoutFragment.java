@@ -20,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.ethanhua.skeleton.RecyclerViewSkeletonScreen;
+import com.ethanhua.skeleton.Skeleton;
 import com.example.fitlift.OnSwipeTouchListener;
 import com.example.fitlift.R;
 import com.example.fitlift.WorkoutJournal;
@@ -46,6 +48,7 @@ public class WorkoutFragment extends Fragment {
     private ImageView ivProfileImg;
     private TextView tvUserName;
     private MainActivity activity;
+    private RecyclerViewSkeletonScreen skeletonScreen;
     //private FragmentManager fragmentManager = getFragmentManager();
 
     public WorkoutFragment() { }         // Required empty public constructor
@@ -109,6 +112,9 @@ public class WorkoutFragment extends Fragment {
         rvWorkouts.setAdapter(adapter);
 
         rvWorkouts.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        skeletonScreen = Skeleton.bind(rvWorkouts).adapter(adapter).load(R.layout.item_workout_journal).show();
+
         queryWorkouts();
 
         // TODO: Fix swipelistener to detect swipe anywhere on screen
@@ -152,6 +158,7 @@ public class WorkoutFragment extends Fragment {
 
                 workoutJournals.addAll(journals);
                 adapter.notifyDataSetChanged();
+                skeletonScreen.hide();
             }
         });
     }
