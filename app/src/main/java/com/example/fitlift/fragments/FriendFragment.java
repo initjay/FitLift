@@ -27,6 +27,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
+import com.ethanhua.skeleton.RecyclerViewSkeletonScreen;
+import com.ethanhua.skeleton.Skeleton;
 import com.example.fitlift.OnSwipeTouchListener;
 import com.example.fitlift.R;
 import com.example.fitlift.WorkoutJournal;
@@ -56,6 +58,8 @@ public class FriendFragment extends Fragment {
     private SearchView searchView = null;
     private SearchView.OnQueryTextListener queryTextListener;
 
+    private RecyclerViewSkeletonScreen skeletonScreen;
+
     public FriendFragment() { }         // Required empty public constructor
 
     @Override
@@ -80,6 +84,8 @@ public class FriendFragment extends Fragment {
 
         Toolbar toolbar = binding.friendsToolbar;
         activity.setSupportActionBar(toolbar);
+        // needed to get rid of default title
+        activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         rvFriends = binding.rvFriends;
 
@@ -88,6 +94,9 @@ public class FriendFragment extends Fragment {
 
         rvFriends.setAdapter(adapter);
         rvFriends.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        skeletonScreen = Skeleton.bind(rvFriends).adapter(adapter).load(R.layout.item_friend).show();
+
         queryFriends();
 
         rvFriends.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
@@ -209,6 +218,7 @@ public class FriendFragment extends Fragment {
 
                         friends.addAll(objects);
                         adapter.notifyDataSetChanged();
+                        skeletonScreen.hide();
                     }
                 });
             }

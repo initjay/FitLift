@@ -12,10 +12,19 @@
         android:id="@+id/friends_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/menu_friends_toolbar"
-        android:layout_marginBottom="16dp"
-        android:background="#A3A2A2"
-        app:title="@string/app_name"/>
+        android:layout_marginBottom="0dp"
+        android:background="#160026"
+        app:menu="@menu/menu_friends_toolbar" >
+
+        <TextView
+            android:id="@+id/tvToolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/yesteryear"
+            android:text="FitLift"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF" />
+    </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
         android:id="@+id/child_fragment_friends_search"
@@ -27,6 +36,7 @@
         android:id="@+id/rvFriends"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/child_fragment_friends_search"/>
+        android:layout_below="@id/child_fragment_friends_search"
+        android:background="#1B2331" />
 
 </RelativeLayout>

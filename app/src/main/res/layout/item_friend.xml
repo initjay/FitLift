@@ -11,13 +11,16 @@
         android:id="@+id/cvFriend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="8dp"
         app:cardCornerRadius="8dp">
 
         <RelativeLayout
             android:id="@+id/rvCardFriend"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#B3365874">
 
             <ImageView
                 android:id="@+id/ivFriendProfileImg"
@@ -30,18 +33,25 @@
                 android:id="@+id/tvFriendUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 android:layout_toEndOf="@id/ivFriendProfileImg"
+                android:fontFamily="@font/aldrich"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                tools:text="Username"/>
+                tools:text="Username" />
 
             <TextView
                 android:id="@+id/tvFriendTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
                 android:layout_below="@id/ivFriendProfileImg"
-                android:text="TextView"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/aldrich"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textStyle="bold"
                 tools:text="Title" />
@@ -50,12 +60,12 @@
                 android:id="@+id/tvFriendDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/ivFriendProfileImg"
                 android:layout_alignParentTop="false"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_below="@id/ivFriendProfileImg"
                 android:layout_toEndOf="@+id/tvFriendTitle"
-                android:text="TextView"
+                android:fontFamily="@font/aldrich"
                 tools:text="Date" />
 
         </RelativeLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF"
+    android:background="#1B2331"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -12,12 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:background="#B3365874"
         app:cardCornerRadius="8dp">
 
         <RelativeLayout
             android:id="@+id/rvSearchResults"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#B3365874">
 
             <ImageView
                 android:id="@+id/ivSearchResultProfileImg"

@@ -11,8 +11,8 @@
         android:id="@+id/toolbar_meal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="#A3A2A2"
+        android:layout_marginBottom="0dp"
+        android:background="#160026"
         app:contentInsetStart="0dp"
         app:menu="@menu/menu_toolbar">
 
@@ -37,8 +37,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_centerHorizontal="false"
-                android:text="TextView" />
+                android:fontFamily="@font/aldrich"
+                android:text="TextView"
+                android:textColor="#FFFFFF" />
 
         </RelativeLayout>
 
@@ -48,6 +49,7 @@
         android:id="@+id/rvMealFragments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar_meal" />
+        android:layout_below="@id/toolbar_meal"
+        android:background="#1B2331" />
 
 </RelativeLayout>
