@@ -52,7 +52,6 @@
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="4dp"
                 android:fontFamily="@font/aldrich"
-                android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textStyle="bold"
                 tools:text="Title" />
@@ -67,7 +66,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@+id/tvFriendTitle"
                 android:fontFamily="@font/aldrich"
-                android:text="TextView"
                 tools:text="Date" />
 
         </RelativeLayout>

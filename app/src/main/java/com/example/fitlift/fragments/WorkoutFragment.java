@@ -112,7 +112,7 @@ public class WorkoutFragment extends Fragment {
         rvWorkouts.setAdapter(adapter);
 
         rvWorkouts.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        // progress indicator
         skeletonScreen = Skeleton.bind(rvWorkouts).adapter(adapter).load(R.layout.item_workout_journal).show();
 
         queryWorkouts();

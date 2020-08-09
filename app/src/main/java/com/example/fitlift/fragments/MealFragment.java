@@ -22,6 +22,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.ethanhua.skeleton.RecyclerViewSkeletonScreen;
+import com.ethanhua.skeleton.Skeleton;
 import com.example.fitlift.MealJournal;
 import com.example.fitlift.OnSwipeTouchListener;
 import com.example.fitlift.R;
@@ -47,6 +49,7 @@ public class MealFragment extends Fragment {
     private List<MealJournal> mealJournals;
     private TextView tvUserNameMealFragment;
     private ImageView ivProfileImgMealFragment;
+    private RecyclerViewSkeletonScreen skeletonScreen;
 
     public MealFragment() { }         // Required empty public constructor
 
@@ -103,6 +106,9 @@ public class MealFragment extends Fragment {
         rvMealFragments.setAdapter(adapter);
 
         rvMealFragments.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        skeletonScreen = Skeleton.bind(rvMealFragments).adapter(adapter).load(R.layout.item_meal).show();
+
         queryMeals();
 
         rvMealFragments.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
@@ -138,6 +144,7 @@ public class MealFragment extends Fragment {
 
                 mealJournals.addAll(meals);
                 adapter.notifyDataSetChanged();
+                skeletonScreen.hide();
             }
         });
     }
