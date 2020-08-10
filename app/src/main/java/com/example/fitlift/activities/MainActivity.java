@@ -66,8 +66,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // TODO fix this
         // gesture listener
-        view.setOnTouchListener(new OnSwipeTouchListener(this) {
+        binding.flContainer.setOnTouchListener(new OnSwipeTouchListener(this) {
             Fragment currFragment;
 
             @Override

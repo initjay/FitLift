@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1B2331"
-    tools:context=".fragments.WorkoutDetailsFragment">
+    tools:context=".fragments.WorkoutDetailsFragment" >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvWorkout"

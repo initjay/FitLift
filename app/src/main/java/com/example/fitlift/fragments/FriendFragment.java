@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen;
 import com.ethanhua.skeleton.Skeleton;
@@ -59,6 +60,7 @@ public class FriendFragment extends Fragment {
     private SearchView.OnQueryTextListener queryTextListener;
 
     private RecyclerViewSkeletonScreen skeletonScreen;
+    private SwipeRefreshLayout swipeContainer;
 
     public FriendFragment() { }         // Required empty public constructor
 
@@ -94,6 +96,20 @@ public class FriendFragment extends Fragment {
 
         rvFriends.setAdapter(adapter);
         rvFriends.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        binding.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.i(TAG, "Fetching new friend posts");
+                queryFriends();
+            }
+        });
+
+        // Configure the refreshing colors
+        binding.swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
         skeletonScreen = Skeleton.bind(rvFriends).adapter(adapter).load(R.layout.item_friend).show();
 
@@ -198,6 +214,8 @@ public class FriendFragment extends Fragment {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
 
+                binding.swipeContainer.setRefreshing(false);
+
                 if (e != null) {
                     Log.e(TAG, "Issue with getting friends relation", e);
                     return;
@@ -211,11 +229,12 @@ public class FriendFragment extends Fragment {
                 query.findInBackground(new FindCallback<WorkoutJournal>() {
                     @Override
                     public void done(List<WorkoutJournal> objects, ParseException e) {
+
                         if (e != null) {
                             Log.e(TAG, "Issue with getting friends workouts", e);
                             return;
                         }
-
+                        adapter.clear();
                         friends.addAll(objects);
                         adapter.notifyDataSetChanged();
                         skeletonScreen.hide();
