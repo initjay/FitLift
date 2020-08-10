@@ -52,6 +52,16 @@ public class MealJournalAdapter extends RecyclerView.Adapter<MealJournalAdapter.
         return mealJournals.size();
     }
 
+    public void clear() {
+        mealJournals.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<MealJournal> newMeals) {
+        mealJournals.addAll(newMeals);
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ItemMealBinding binding;

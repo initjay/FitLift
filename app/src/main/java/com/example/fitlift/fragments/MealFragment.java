@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen;
@@ -50,7 +51,9 @@ public class MealFragment extends Fragment {
     private TextView tvUserNameMealFragment;
     private ImageView ivProfileImgMealFragment;
     private RecyclerViewSkeletonScreen skeletonScreen;
+    private SwipeRefreshLayout swipeContainer;
 
+    // TODO IMPLEMENT VIEW BINDING LIBRARY
     public MealFragment() { }         // Required empty public constructor
 
     @Override
@@ -76,6 +79,8 @@ public class MealFragment extends Fragment {
         rvMealFragments = view.findViewById(R.id.rvMealFragments);
         tvUserNameMealFragment = view.findViewById(R.id.tvUserNameMealFragment);
         ivProfileImgMealFragment = view.findViewById(R.id.ivProfileImgMealFragment);
+        swipeContainer = view.findViewById(R.id.swipeContainerMeal);
+
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -106,6 +111,20 @@ public class MealFragment extends Fragment {
         rvMealFragments.setAdapter(adapter);
 
         rvMealFragments.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.i(TAG, "Fetching new friend posts");
+                queryMeals();
+            }
+        });
+
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
         skeletonScreen = Skeleton.bind(rvMealFragments).adapter(adapter).load(R.layout.item_meal).show();
 
@@ -138,11 +157,15 @@ public class MealFragment extends Fragment {
         query.findInBackground(new FindCallback<MealJournal>() {
             @Override
             public void done(List<MealJournal> meals, ParseException e) {
+
+                swipeContainer.setRefreshing(false);
+
                 if (e != null) {
                     Log.e(TAG, "Issue with getting meal journals", e);
                 }
 
-                mealJournals.addAll(meals);
+                adapter.clear();
+                adapter.addAll(meals);
                 adapter.notifyDataSetChanged();
                 skeletonScreen.hide();
             }

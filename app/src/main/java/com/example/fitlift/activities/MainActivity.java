@@ -59,12 +59,16 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 // handles inserting the fragment to the container in main activity
-                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment, TAG).commit();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.flContainer, fragment, TAG);
+                fragmentTransaction.addToBackStack(null).commit();
                 return true;
             }
         });
 
-        view.setOnTouchListener(new OnSwipeTouchListener(this) {
+        // TODO fix this
+        // gesture listener
+        binding.flContainer.setOnTouchListener(new OnSwipeTouchListener(this) {
             Fragment currFragment;
 
             @Override
@@ -99,6 +103,25 @@ public class MainActivity extends AppCompatActivity {
 
         // Set default selection for fragment
         binding.bottomNavigation.setSelectedItemId(R.id.action_workout);
+
+        //
+        this.getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                Fragment fragmentCheck = getCurrentFragment();
+                if (fragmentCheck instanceof WorkoutFragment) {
+                    binding.bottomNavigation.getMenu().findItem(R.id.action_workout).setChecked(true);
+                } else if (fragmentCheck instanceof  MealFragment) {
+                    binding.bottomNavigation.getMenu().findItem(R.id.action_meals).setChecked(true);
+                } else if (fragmentCheck instanceof FriendFragment) {
+                    binding.bottomNavigation.getMenu().findItem(R.id.action_friends).setChecked(true);
+                }
+            }
+        });
+    }
+
+    public Fragment getCurrentFragment() {
+        return this.getSupportFragmentManager().findFragmentById(R.id.flContainer);
     }
 
     public void goToDetails() {
@@ -106,7 +129,8 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentTransaction fts = getSupportFragmentManager().beginTransaction();
         fts.setCustomAnimations(R.anim.slide_in_top, R.anim.slide_out_bottom);
-        fts.replace(R.id.flContainer, fragment).commit();
+        fts.replace(R.id.flContainer, fragment);
+        fts.addToBackStack(null).commit();
     }
 
     public void goToMealDetails() {
@@ -114,7 +138,8 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentTransaction fts = getSupportFragmentManager().beginTransaction();
         fts.setCustomAnimations(R.anim.slide_in_top, R.anim.slide_out_bottom);
-        fts.replace(R.id.flContainer, fragment).commit();
+        fts.replace(R.id.flContainer, fragment);
+        fts.addToBackStack(null).commit();
     }
 
     public void goToFriends() {

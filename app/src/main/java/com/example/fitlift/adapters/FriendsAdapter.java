@@ -51,6 +51,16 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
         return friends.size();
     }
 
+    public void clear() {
+        friends.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<WorkoutJournal> newFriends) {
+        friends.addAll(newFriends);
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ItemFriendBinding binding;
