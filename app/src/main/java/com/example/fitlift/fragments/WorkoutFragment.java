@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -51,7 +52,9 @@ public class WorkoutFragment extends Fragment {
     private MainActivity activity;
     private RecyclerViewSkeletonScreen skeletonScreen;
     //private FragmentManager fragmentManager = getFragmentManager();
+    private SwipeRefreshLayout swipeContainer;
 
+    // TODO IMPLEMENT VIEW BINDING LIBRARY
     public WorkoutFragment() { }         // Required empty public constructor
 
     @Override
@@ -80,6 +83,7 @@ public class WorkoutFragment extends Fragment {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ivProfileImg = view.findViewById(R.id.ivProfileImg);
         tvUserName = view.findViewById(R.id.tvUserName);
+        swipeContainer = view.findViewById(R.id.swipeContainerWorkout);
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
 
@@ -113,6 +117,21 @@ public class WorkoutFragment extends Fragment {
         rvWorkouts.setAdapter(adapter);
 
         rvWorkouts.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.i(TAG, "Fetching new friend posts");
+                queryWorkouts();
+            }
+        });
+
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
         // progress indicator
         skeletonScreen = Skeleton.bind(rvWorkouts).adapter(adapter).load(R.layout.item_workout_journal).show();
 
@@ -152,12 +171,15 @@ public class WorkoutFragment extends Fragment {
             @Override
             public void done(List<WorkoutJournal> journals, ParseException e) {
 
+                swipeContainer.setRefreshing(false);
+
                 if (e != null) {
                     Log.e(TAG, "Issue with getting workouts ", e);
                     return;
                 }
 
-                workoutJournals.addAll(journals);
+                adapter.clear();
+                adapter.addAll(journals);
                 adapter.notifyDataSetChanged();
                 skeletonScreen.hide();
             }

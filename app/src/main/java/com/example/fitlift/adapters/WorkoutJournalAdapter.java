@@ -50,6 +50,16 @@ public class WorkoutJournalAdapter extends RecyclerView.Adapter<WorkoutJournalAd
         return workoutJournals.size();
     }
 
+    public void clear() {
+        workoutJournals.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<WorkoutJournal> newFriends) {
+        workoutJournals.addAll(newFriends);
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ItemWorkoutJournalBinding binding;

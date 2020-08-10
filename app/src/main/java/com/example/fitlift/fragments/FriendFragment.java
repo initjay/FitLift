@@ -235,7 +235,7 @@ public class FriendFragment extends Fragment {
                             return;
                         }
                         adapter.clear();
-                        friends.addAll(objects);
+                        adapter.addAll(objects);
                         adapter.notifyDataSetChanged();
                         skeletonScreen.hide();
                     }
