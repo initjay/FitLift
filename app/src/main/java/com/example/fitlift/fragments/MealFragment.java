@@ -25,9 +25,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.bumptech.glide.Glide;
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen;
 import com.ethanhua.skeleton.Skeleton;
+import com.example.fitlift.EndlessRecyclerViewScrollListener;
 import com.example.fitlift.MealJournal;
 import com.example.fitlift.OnSwipeTouchListener;
 import com.example.fitlift.R;
+import com.example.fitlift.WorkoutJournal;
 import com.example.fitlift.activities.LoginActivity;
 import com.example.fitlift.activities.MainActivity;
 import com.example.fitlift.adapters.MealJournalAdapter;
@@ -52,6 +54,7 @@ public class MealFragment extends Fragment {
     private ImageView ivProfileImgMealFragment;
     private RecyclerViewSkeletonScreen skeletonScreen;
     private SwipeRefreshLayout swipeContainer;
+    private EndlessRecyclerViewScrollListener scrollListener;
 
     // TODO IMPLEMENT VIEW BINDING LIBRARY
     public MealFragment() { }         // Required empty public constructor
@@ -110,13 +113,16 @@ public class MealFragment extends Fragment {
 
         rvMealFragments.setAdapter(adapter);
 
-        rvMealFragments.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+
+        rvMealFragments.setLayoutManager(linearLayoutManager);
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 Log.i(TAG, "Fetching new friend posts");
-                queryMeals();
+                adapter.clear();
+                queryMeals(buildQuery(0));
             }
         });
 
@@ -126,9 +132,21 @@ public class MealFragment extends Fragment {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
-        skeletonScreen = Skeleton.bind(rvMealFragments).adapter(adapter).load(R.layout.item_meal).show();
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                if (mealJournals.size() == 0) {
+                    queryMeals(buildQuery(0));
+                    scrollListener.resetState();
+                } else {
+                    queryMeals(buildQuery(totalItemsCount));
+                }
+            }
+        };
 
-        queryMeals();
+        rvMealFragments.addOnScrollListener(scrollListener);
+
+        skeletonScreen = Skeleton.bind(rvMealFragments).adapter(adapter).load(R.layout.item_meal).show();
 
         rvMealFragments.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
 
@@ -147,12 +165,16 @@ public class MealFragment extends Fragment {
         });
     }
 
-    private void queryMeals() {
+    protected ParseQuery<MealJournal> buildQuery(int skip) {
         ParseQuery<MealJournal> query = ParseQuery.getQuery(MealJournal.class);
-
         query.whereContains("user", user.getObjectId());
-        query.setLimit(20);
+        query.setLimit(10);
+        query.setSkip(skip);
         query.addDescendingOrder(MealJournal.KEY_CREATED_AT);
+        return query;
+    }
+
+    private void queryMeals(ParseQuery<MealJournal> query) {
 
         query.findInBackground(new FindCallback<MealJournal>() {
             @Override
@@ -164,7 +186,6 @@ public class MealFragment extends Fragment {
                     Log.e(TAG, "Issue with getting meal journals", e);
                 }
 
-                adapter.clear();
                 adapter.addAll(meals);
                 adapter.notifyDataSetChanged();
                 skeletonScreen.hide();

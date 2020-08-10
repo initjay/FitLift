@@ -19,13 +19,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen;
 import com.ethanhua.skeleton.Skeleton;
+import com.example.fitlift.EndlessRecyclerViewScrollListener;
 import com.example.fitlift.OnSwipeTouchListener;
 import com.example.fitlift.R;
+import com.example.fitlift.Workout;
 import com.example.fitlift.WorkoutJournal;
 import com.example.fitlift.activities.LoginActivity;
 import com.example.fitlift.activities.MainActivity;
@@ -53,6 +56,7 @@ public class WorkoutFragment extends Fragment {
     private RecyclerViewSkeletonScreen skeletonScreen;
     //private FragmentManager fragmentManager = getFragmentManager();
     private SwipeRefreshLayout swipeContainer;
+    private EndlessRecyclerViewScrollListener scrollListener;
 
     // TODO IMPLEMENT VIEW BINDING LIBRARY
     public WorkoutFragment() { }         // Required empty public constructor
@@ -116,13 +120,15 @@ public class WorkoutFragment extends Fragment {
 
         rvWorkouts.setAdapter(adapter);
 
-        rvWorkouts.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        rvWorkouts.setLayoutManager(linearLayoutManager);
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 Log.i(TAG, "Fetching new friend posts");
-                queryWorkouts();
+                adapter.clear();
+                queryWorkouts(buildQuery(0));
             }
         });
 
@@ -132,10 +138,29 @@ public class WorkoutFragment extends Fragment {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                if (workoutJournals.size() == 0) {
+                    queryWorkouts(buildQuery(0));
+                    scrollListener.resetState();
+                } else {
+                    queryWorkouts(buildQuery(totalItemsCount));
+                }
+            }
+        };
+
+        rvWorkouts.addOnScrollListener(scrollListener);
+
         // progress indicator
         skeletonScreen = Skeleton.bind(rvWorkouts).adapter(adapter).load(R.layout.item_workout_journal).show();
 
-        queryWorkouts();
+//        if (workoutJournals.size() == 0) {
+////            adapter.clear();
+////            adapter.notifyDataSetChanged();
+////            scrollListener.resetState();
+//            queryWorkouts(buildQuery(0));
+//        }
 
         // TODO: Fix swipelistener to detect swipe anywhere on screen
         rvWorkouts.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
@@ -160,13 +185,18 @@ public class WorkoutFragment extends Fragment {
         });
     }
 
-    // Todo: store query responses locally as well for quicker access, wipe local storage when user signs out?
-    private void queryWorkouts() {
-
+    protected ParseQuery<WorkoutJournal> buildQuery(int skip) {
         ParseQuery<WorkoutJournal> query = ParseQuery.getQuery(WorkoutJournal.class);
         query.whereContains("user", currUser);
-        query.setLimit(20);
+        query.setLimit(10);
+        query.setSkip(skip);
         query.addDescendingOrder(WorkoutJournal.KEY_CREATED_AT);
+        return query;
+    }
+
+    // Todo: store query responses locally as well for quicker access, wipe local storage when user signs out?
+    private void queryWorkouts(ParseQuery<WorkoutJournal> query) {
+
         query.findInBackground(new FindCallback<WorkoutJournal>() {
             @Override
             public void done(List<WorkoutJournal> journals, ParseException e) {
@@ -178,8 +208,7 @@ public class WorkoutFragment extends Fragment {
                     return;
                 }
 
-                adapter.clear();
-                adapter.addAll(journals);
+                workoutJournals.addAll(journals);
                 adapter.notifyDataSetChanged();
                 skeletonScreen.hide();
             }
