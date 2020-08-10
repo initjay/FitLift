@@ -55,8 +55,8 @@ public class WorkoutJournalAdapter extends RecyclerView.Adapter<WorkoutJournalAd
         notifyDataSetChanged();
     }
 
-    public void addAll(List<WorkoutJournal> newFriends) {
-        workoutJournals.addAll(newFriends);
+    public void addAll(List<WorkoutJournal> newWorkouts) {
+        workoutJournals.addAll(newWorkouts);
         notifyDataSetChanged();
     }
 
