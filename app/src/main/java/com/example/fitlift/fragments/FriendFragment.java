@@ -153,9 +153,9 @@ public class FriendFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
                 // TODO: FIX WHERE FRAGMENT IS NOT RECOGNIZING WHICH USER FOLLOW/UNFOLLOW BUTTON IS CLICKED
-//                if (!newText.isEmpty()) {
-//                    fetchUsers(newText);
-//                }
+                if (!newText.isEmpty()) {
+                    fetchUsers(newText);
+                }
                 return false;
             }
         });
@@ -170,6 +170,7 @@ public class FriendFragment extends Fragment {
             public boolean onMenuItemActionCollapse(MenuItem menuItem) {
                 //Toast.makeText(activity, "Search Closed", Toast.LENGTH_SHORT).show();
                 //getFragmentManager().popBackStackImmediate();
+                activity.goToFriends();
                 return true;
             }
         });
@@ -223,7 +224,7 @@ public class FriendFragment extends Fragment {
 
                 ParseQuery<WorkoutJournal> query = ParseQuery.getQuery(WorkoutJournal.class);
                 query.whereContainedIn("user", objects);
-                query.setLimit(20);
+                query.setLimit(60);
                 query.addDescendingOrder(WorkoutJournal.KEY_CREATED_AT);
 
                 query.findInBackground(new FindCallback<WorkoutJournal>() {

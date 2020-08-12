@@ -165,7 +165,7 @@ public class WorkoutFragment extends Fragment {
 
         ParseQuery<WorkoutJournal> query = ParseQuery.getQuery(WorkoutJournal.class);
         query.whereContains("user", currUser);
-        query.setLimit(20);
+        query.setLimit(30);
         query.addDescendingOrder(WorkoutJournal.KEY_CREATED_AT);
         query.findInBackground(new FindCallback<WorkoutJournal>() {
             @Override

@@ -151,7 +151,7 @@ public class MealFragment extends Fragment {
         ParseQuery<MealJournal> query = ParseQuery.getQuery(MealJournal.class);
 
         query.whereContains("user", user.getObjectId());
-        query.setLimit(20);
+        query.setLimit(30);
         query.addDescendingOrder(MealJournal.KEY_CREATED_AT);
 
         query.findInBackground(new FindCallback<MealJournal>() {
