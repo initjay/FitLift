@@ -168,7 +168,7 @@ public class FriendFragment extends Fragment {
 
             @Override
             public boolean onMenuItemActionCollapse(MenuItem menuItem) {
-                Toast.makeText(activity, "Search Closed", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(activity, "Search Closed", Toast.LENGTH_SHORT).show();
                 //getFragmentManager().popBackStackImmediate();
                 return true;
             }
