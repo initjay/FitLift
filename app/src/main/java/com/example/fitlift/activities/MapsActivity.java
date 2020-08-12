@@ -129,7 +129,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
                 }
             });
         } else {
-            Toast.makeText(this, "Error - Map Fragment was null!!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Error - Map Fragment was null!!", Toast.LENGTH_SHORT).show();
         }
 
         btnBeginRun = findViewById(R.id.btnBeginRun);
@@ -174,7 +174,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
         map = googleMap;
         if (map != null) {
             // Map is ready
-            Toast.makeText(this, "Map Fragment was loaded properly!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Map Fragment was loaded properly!", Toast.LENGTH_SHORT).show();
             // Attach long click listener to the map here
             map.setOnMapLongClickListener(this);
             MapsActivityPermissionsDispatcher.getMyLocationWithPermissionCheck(this);
@@ -190,7 +190,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
 //            LatLng currLocation = new LatLng(location.getLatitude(), location.getLongitude());
             map.animateCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 18));
         } else {
-            Toast.makeText(this, "Error - Map was null!!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Error - Map was null!!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -279,7 +279,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMapLo
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17);
             map.animateCamera(cameraUpdate);
         } else {
-            Toast.makeText(this, "Current location was null, enable GPS on emulator!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Current location was null, enable GPS on emulator!", Toast.LENGTH_SHORT).show();
         }
         MapsActivityPermissionsDispatcher.startLocationUpdatesWithPermissionCheck(this);
     }

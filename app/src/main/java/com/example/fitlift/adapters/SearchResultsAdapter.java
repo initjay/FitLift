@@ -97,14 +97,16 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(context, "Add button clicked!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Add button clicked!", Toast.LENGTH_SHORT).show();
 
             ParseRelation<ParseUser> relation = ParseUser.getCurrentUser().getRelation("friends");
 
             if (binding.btnAdd.getText() == "Follow") {
                 relation.add(userClicked);
+                binding.btnAdd.setText("Unfollow");
             } else {
                 relation.remove(userClicked);
+                binding.btnAdd.setText("Follow");
             }
 
             ParseUser.getCurrentUser().saveInBackground();
