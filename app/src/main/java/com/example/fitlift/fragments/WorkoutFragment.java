@@ -56,7 +56,11 @@ public class WorkoutFragment extends Fragment {
     private RecyclerViewSkeletonScreen skeletonScreen;
     //private FragmentManager fragmentManager = getFragmentManager();
     private SwipeRefreshLayout swipeContainer;
+
     private EndlessRecyclerViewScrollListener scrollListener;
+    private int previousTotalCount = 0;
+
+    private LinearLayoutManager linearLayoutManager;
 
     // TODO IMPLEMENT VIEW BINDING LIBRARY
     public WorkoutFragment() { }         // Required empty public constructor
@@ -120,15 +124,18 @@ public class WorkoutFragment extends Fragment {
 
         rvWorkouts.setAdapter(adapter);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager = new LinearLayoutManager(getContext());
         rvWorkouts.setLayoutManager(linearLayoutManager);
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 Log.i(TAG, "Fetching new friend posts");
-                adapter.clear();
-                queryWorkouts(buildQuery(0));
+                //adapter.clear();
+//                workoutJournals.clear();
+//                adapter.notifyDataSetChanged();
+//                scrollListener.resetState();
+                queryWorkouts(0);
             }
         });
 
@@ -141,12 +148,7 @@ public class WorkoutFragment extends Fragment {
         scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                if (workoutJournals.size() == 0) {
-                    queryWorkouts(buildQuery(0));
-                    scrollListener.resetState();
-                } else {
-                    queryWorkouts(buildQuery(totalItemsCount));
-                }
+                queryWorkouts(totalItemsCount);
             }
         };
 
@@ -154,13 +156,6 @@ public class WorkoutFragment extends Fragment {
 
         // progress indicator
         skeletonScreen = Skeleton.bind(rvWorkouts).adapter(adapter).load(R.layout.item_workout_journal).show();
-
-//        if (workoutJournals.size() == 0) {
-////            adapter.clear();
-////            adapter.notifyDataSetChanged();
-////            scrollListener.resetState();
-//            queryWorkouts(buildQuery(0));
-//        }
 
         // TODO: Fix swipelistener to detect swipe anywhere on screen
         rvWorkouts.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
@@ -183,19 +178,19 @@ public class WorkoutFragment extends Fragment {
                 activity.goToFriends();
             }
         });
+
+        //queryWorkouts(0);
     }
 
-    protected ParseQuery<WorkoutJournal> buildQuery(int skip) {
-        ParseQuery<WorkoutJournal> query = ParseQuery.getQuery(WorkoutJournal.class);
-        query.whereContains("user", currUser);
-        query.setLimit(10);
-        query.setSkip(skip);
-        query.addDescendingOrder(WorkoutJournal.KEY_CREATED_AT);
-        return query;
-    }
 
     // Todo: store query responses locally as well for quicker access, wipe local storage when user signs out?
-    private void queryWorkouts(ParseQuery<WorkoutJournal> query) {
+    private void queryWorkouts(final int totalItemsCount) {
+
+        ParseQuery<WorkoutJournal> query = ParseQuery.getQuery(WorkoutJournal.class);
+        query.whereContains("user", currUser);
+        query.setLimit(15);
+        query.setSkip(previousTotalCount);
+        query.addDescendingOrder(WorkoutJournal.KEY_CREATED_AT);
 
         query.findInBackground(new FindCallback<WorkoutJournal>() {
             @Override
@@ -207,9 +202,11 @@ public class WorkoutFragment extends Fragment {
                     Log.e(TAG, "Issue with getting workouts ", e);
                     return;
                 }
-
                 workoutJournals.addAll(journals);
-                adapter.notifyDataSetChanged();
+                //adapter.notifyDataSetChanged();
+                adapter.notifyItemRangeInserted(previousTotalCount, journals.size());
+                //adapter.notifyItemInserted((page) * 10);
+                previousTotalCount = journals.size();
                 skeletonScreen.hide();
             }
         });
